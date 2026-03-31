@@ -329,108 +329,170 @@ body{
 .mg-btn.pri{background:var(--accent);color:#fff}
 .mg-btn.sec{background:rgba(0,122,255,.08);color:var(--accent)}
 
-/* ===== MAC WINDOW ===== */
-.mac-window{display:contents}
-.mac-titlebar,.mac-sidebar{display:none}
-.mac-body,.mac-phone-area{display:contents}
+/* ===== OS SHELL ===== */
+.os-menubar{display:none}
+.os-desktop{width:100%;min-height:100dvh;display:block;background:#000}
+.os-window{width:100%;min-height:100dvh;overflow:hidden;position:relative;background:var(--bg)}
+.os-titlebar,.os-sidebar{display:none}
+.os-winbody{display:block;min-height:100dvh}
+.os-main{width:100%;height:100dvh;position:relative;overflow:hidden;background:var(--bg)}
 
-@media(min-width:860px){
-  body{background:linear-gradient(135deg,#0d0d0d 0%,#111827 60%,#0d0d0d 100%)}
-  .mac-window{
-    display:flex;flex-direction:column;
+/* ===== DESKTOP macOS ===== */
+@media(min-width:768px){
+  body{
+    background:linear-gradient(135deg,#0a0a0f 0%,#0f172a 50%,#0a0a0f 100%);
+    display:block;overflow:hidden;height:100vh;min-height:unset;
+  }
+  .os-menubar{
+    display:flex;align-items:center;justify-content:space-between;
+    position:fixed;top:0;left:0;right:0;height:28px;z-index:2000;
+    background:rgba(12,12,18,.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+    border-bottom:1px solid rgba(255,255,255,.07);
+    padding:0 16px;font-size:13px;color:rgba(255,255,255,.9);font-weight:500;
+  }
+  .os-menu-l{display:flex;align-items:center;gap:18px}
+  .os-apple{font-size:15px;cursor:default;opacity:.9}
+  .os-appname{font-weight:700;letter-spacing:-.2px}
+  .os-mi{opacity:.6;cursor:default}
+  .os-menu-r{display:flex;align-items:center;gap:10px;font-size:12px;opacity:.7}
+  .os-desktop{
+    position:fixed;top:28px;left:0;right:0;bottom:0;
+    min-height:unset;height:auto;
+    display:flex;align-items:center;justify-content:center;padding:20px;
+  }
+  .os-window{
+    width:100%;max-width:1100px;
+    height:100%;max-height:760px;min-height:unset;
     border-radius:12px;overflow:hidden;
-    box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.08);
-    width:min(1060px,96vw);height:min(820px,92vh);
+    box-shadow:0 40px 120px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.09);
+    display:flex;flex-direction:column;background:#1a1a1c;
   }
-  .mac-titlebar{
-    display:flex;align-items:center;height:44px;
-    background:#2c2c2e;border-bottom:1px solid rgba(255,255,255,.06);
-    padding:0 16px;position:relative;flex-shrink:0;
+  .os-titlebar{
+    display:flex;align-items:center;height:44px;flex-shrink:0;
+    background:#272729;border-bottom:1px solid rgba(255,255,255,.07);
+    padding:0 18px;position:relative;
   }
-  .mac-btns{display:flex;gap:8px}
-  .mac-btn{width:13px;height:13px;border-radius:50%;cursor:default;display:inline-block}
-  .mac-red{background:#ff5f57}.mac-yellow{background:#febc2e}.mac-green{background:#28c840}
-  .mac-wintitle{
+  .os-btns{display:flex;gap:8px}
+  .os-btn{width:13px;height:13px;border-radius:50%;cursor:default;display:inline-block;flex-shrink:0}
+  .os-btn.red{background:#ff5f57}.os-btn.yellow{background:#febc2e}.os-btn.green{background:#28c840}
+  .os-wintitle{
     position:absolute;left:50%;transform:translateX(-50%);
-    font-size:13px;font-weight:500;color:rgba(255,255,255,.45);letter-spacing:-.1px;
+    font-size:13px;font-weight:500;color:rgba(255,255,255,.45);
   }
-  .mac-body{display:flex;flex:1;overflow:hidden}
-  .mac-sidebar{
+  .os-winbody{display:flex;flex:1;overflow:hidden;min-height:unset;height:auto}
+  .os-sidebar{
     display:flex;flex-direction:column;
-    width:210px;background:#1c1c1e;
-    border-right:1px solid rgba(255,255,255,.07);flex-shrink:0;
+    width:220px;background:#1c1c1e;
+    border-right:1px solid rgba(255,255,255,.07);flex-shrink:0;overflow-y:auto;
   }
-  .mac-profile{padding:22px 16px 16px;border-bottom:1px solid rgba(255,255,255,.06);text-align:center}
-  .mac-avatar{width:62px;height:62px;border-radius:50%;object-fit:cover;
-    box-shadow:0 2px 12px rgba(0,0,0,.4);display:block;margin:0 auto 10px}
-  .mac-name{font-size:14px;font-weight:700;color:#fff;letter-spacing:-.2px}
-  .mac-role{font-size:11px;color:rgba(255,255,255,.35);margin-top:3px}
-  .mac-avail{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;
-    color:#34c759;background:rgba(52,199,89,.12);padding:3px 9px;border-radius:20px;margin-top:8px}
-  .mac-dot{width:5px;height:5px;border-radius:50%;background:#34c759;animation:glo 2s infinite;flex-shrink:0}
-  .mac-nav{padding:10px 8px;flex:1;overflow-y:auto}
-  .mac-nav-label{font-size:10px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.8px;color:rgba(255,255,255,.2);padding:10px 8px 4px}
-  .mac-nav-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;
-    cursor:pointer;font-size:13px;font-weight:500;color:rgba(255,255,255,.6);
-    transition:background .12s,color .12s}
-  .mac-nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
-  .mac-nav-item span{font-size:15px;width:20px;text-align:center;flex-shrink:0}
-  .mac-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.06)}
-  .mac-footer-line{font-size:10px;color:rgba(255,255,255,.2);line-height:1.6}
-  .mac-phone-area{flex:1;display:flex;align-items:center;justify-content:center;
-    background:#000;overflow:hidden}
-  .mac-phone-area .phone{transform:scale(0.88);transform-origin:center;flex-shrink:0}
-  .side{display:none!important}
+  .os-profile{padding:24px 16px 16px;border-bottom:1px solid rgba(255,255,255,.06);text-align:center}
+  .os-avatar{width:66px;height:66px;border-radius:50%;object-fit:cover;
+    display:block;margin:0 auto 12px;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+  .os-pname{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.3px}
+  .os-prole{font-size:11px;color:rgba(255,255,255,.38);margin-top:3px}
+  .os-pavail{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:10px;font-weight:600;color:#34c759;
+    background:rgba(52,199,89,.12);padding:3px 10px;border-radius:20px;margin-top:8px;
+  }
+  .os-pdot{width:5px;height:5px;border-radius:50%;background:#34c759;animation:glo 2s infinite;flex-shrink:0}
+  .os-nav{padding:10px 8px;flex:1}
+  .os-nav-label{
+    font-size:10px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.8px;color:rgba(255,255,255,.2);padding:10px 8px 4px;
+  }
+  .os-nav-item{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:8px;cursor:pointer;
+    font-size:13px;font-weight:500;color:rgba(255,255,255,.65);
+    transition:background .12s,color .12s;user-select:none;
+  }
+  .os-nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
+  .os-nav-item.os-active{background:rgba(0,122,255,.18);color:#4da3ff}
+  .os-nav-item span{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+  .os-sfooter{padding:14px 16px;border-top:1px solid rgba(255,255,255,.06)}
+  .os-sfooter-line{font-size:10px;color:rgba(255,255,255,.22);line-height:1.7}
+  .os-main{flex:1;overflow:hidden;position:relative;background:#1a1a1c;height:auto;min-height:unset}
+  /* Hide phone-only chrome */
+  .island,.notif-banner,.sbar,.lock,.wall,.home,#dock,.hbar{display:none!important}
+  /* Views: fill content area, fade in/out */
+  .av{
+    border-radius:0!important;transform:none!important;
+    opacity:0;pointer-events:none;
+    transition:opacity .18s ease;background:#1a1a1c;
+  }
+  .av.open{opacity:1;pointer-events:all}
+  .av-nav{display:none!important}
+  .av-body{height:100%!important;background:#1a1a1c}
+  /* Messages - lighten bg for readability */
+  #v-messages,.av-body{background:#f2f2f7}
+  #v-messages .av-body{background:#f2f2f7}
+  #v-timeline .av-body,#v-findme .av-body,#v-meet .av-body{background:#f2f2f7}
 }
 
-/* ===== RESPONSIVE (MOBILE) ===== */
-@media(max-width:430px){
-  body{background:var(--bg)}
-  .phone{width:100%;height:100vh;height:100dvh;border-radius:0;padding:0;box-shadow:none;background:var(--bg)}
-  .scr,.lock,.av{border-radius:0}
+/* ===== MOBILE ===== */
+@media(max-width:767px){
+  body{overflow:hidden;height:100dvh;min-height:100dvh;display:block}
+  .os-desktop,.os-window,.os-winbody,.os-main{
+    display:block;width:100%;height:100dvh;overflow:hidden;position:relative;background:var(--bg);
+  }
+  .lock,.av{border-radius:0}
   .dock{border-radius:26px}
   .hbar{display:none}
 }
 </style>
 </head>
 <body>
-<div class="mac-window">
-<div class="mac-titlebar">
-  <div class="mac-btns">
-    <span class="mac-btn mac-red"></span>
-    <span class="mac-btn mac-yellow"></span>
-    <span class="mac-btn mac-green"></span>
+<!-- macOS Menu Bar -->
+<div class="os-menubar">
+  <div class="os-menu-l">
+    <span class="os-apple">&#63743;</span>
+    <span class="os-appname">Giulia Piller</span>
+    <span class="os-mi">File</span>
+    <span class="os-mi">View</span>
+    <span class="os-mi">Help</span>
   </div>
-  <div class="mac-wintitle">Giulia Piller.app</div>
-</div>
-<div class="mac-body">
-<div class="mac-sidebar">
-  <div class="mac-profile">
-    <img src="photo.jpg" class="mac-avatar" alt="Giulia">
-    <div class="mac-name">Giulia Piller</div>
-    <div class="mac-role">GTM · Strategy · Ops</div>
-    <div class="mac-avail"><span class="mac-dot"></span>Open to roles</div>
-  </div>
-  <div class="mac-nav">
-    <div class="mac-nav-label">Explore</div>
-    <div class="mac-nav-item" onclick="openApp('messages')"><span>💬</span>Messages</div>
-    <div class="mac-nav-item" onclick="openApp('timeline')"><span>📅</span>Journey</div>
-    <div class="mac-nav-item" onclick="openApp('findme')"><span>🌿</span>Find Me</div>
-    <div class="mac-nav-item" onclick="openApp('meet')"><span>🎥</span>Meet Giulia</div>
-    <div class="mac-nav-label">Connect</div>
-    <div class="mac-nav-item" onclick="window.open('https://www.linkedin.com/in/giulia-piller-2605b81a2/','_blank')"><span>💼</span>LinkedIn</div>
-    <div class="mac-nav-item" onclick="window.open('https://calendly.com/giulia-piller99/30min','_blank')"><span>📅</span>Book a Call</div>
-    <div class="mac-nav-item" onclick="downloadCV()"><span>📄</span>Resume</div>
-  </div>
-  <div class="mac-footer">
-    <div class="mac-footer-line">Columbia MS · Dec 2026</div>
-    <div class="mac-footer-line">Summer '26 · FT Jan '27</div>
+  <div class="os-menu-r">
+    <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2A6 6 0 0 0 2.2 4.8L1 3.4A7.8 7.8 0 0 1 7.5 0a7.8 7.8 0 0 1 6.5 3.4L12.8 4.8A6 6 0 0 0 7.5 2zm0 3A3 3 0 0 0 5 6.6L3.8 5.2A4.8 4.8 0 0 1 7.5 4a4.8 4.8 0 0 1 3.7 1.2L10 6.6A3 3 0 0 0 7.5 5zm0 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+    <span id="osTime"></span>
   </div>
 </div>
-<div class="mac-phone-area">
-<div class="phone">
-<div class="scr">
+<!-- Desktop + Mobile Container -->
+<div class="os-desktop">
+<div class="os-window">
+<div class="os-titlebar">
+  <div class="os-btns">
+    <span class="os-btn red"></span>
+    <span class="os-btn yellow"></span>
+    <span class="os-btn green"></span>
+  </div>
+  <div class="os-wintitle">Giulia Piller</div>
+</div>
+<div class="os-winbody">
+<div class="os-sidebar">
+  <div class="os-profile">
+    <img src="photo.jpg" class="os-avatar" alt="Giulia">
+    <div class="os-pname">Giulia Piller</div>
+    <div class="os-prole">GTM · Strategy · Ops</div>
+    <div class="os-pavail"><span class="os-pdot"></span>Open to roles</div>
+  </div>
+  <div class="os-nav">
+    <div class="os-nav-label">Explore</div>
+    <div class="os-nav-item os-active" data-app="messages" onclick="openApp('messages')"><span>💬</span>Messages</div>
+    <div class="os-nav-item" data-app="timeline" onclick="openApp('timeline')"><span>📅</span>Journey</div>
+    <div class="os-nav-item" data-app="findme" onclick="openApp('findme')"><span>🌿</span>Find Me</div>
+    <div class="os-nav-item" data-app="meet" onclick="openApp('meet')"><span>🎥</span>Meet Giulia</div>
+    <div class="os-nav-label">Connect</div>
+    <div class="os-nav-item" onclick="window.open('https://www.linkedin.com/in/giulia-piller-2605b81a2/','_blank')"><span>💼</span>LinkedIn</div>
+    <div class="os-nav-item" onclick="window.open('https://calendly.com/giulia-piller99/30min','_blank')"><span>📅</span>Book a Call</div>
+    <div class="os-nav-item" onclick="downloadCV()"><span>📄</span>Resume</div>
+  </div>
+  <div class="os-sfooter">
+    <div class="os-sfooter-line">Columbia MS · Dec 2026</div>
+    <div class="os-sfooter-line">Seeking Summer '26 · FT Jan '27</div>
+  </div>
+</div>
+<div class="os-main">
 
 <!-- Dynamic Island -->
 <div class="island"></div>
@@ -673,7 +735,6 @@ body{
 </div>
 </div>
 </div>
-</div>
 
 <script>
 const G = {
@@ -722,41 +783,58 @@ const G = {
 // Time
 function tick(){
   const d=new Date(),t=`${d.getHours()}:${d.getMinutes().toString().padStart(2,'0')}`;
-  document.getElementById('sTime').textContent=t;
-  document.getElementById('lTime').textContent=t;
+  const s=document.getElementById('sTime');if(s)s.textContent=t;
+  const l=document.getElementById('lTime');if(l)l.textContent=t;
+  const o=document.getElementById('osTime');if(o)o.textContent=t;
   const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const mos=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('lDate').textContent=`${days[d.getDay()]}, ${mos[d.getMonth()]} ${d.getDate()}`;
+  const ld=document.getElementById('lDate');if(ld)ld.textContent=`${days[d.getDay()]}, ${mos[d.getMonth()]} ${d.getDate()}`;
 }
 tick();setInterval(tick,30000);
 
 function unlock(){document.getElementById('lock').classList.add('gone')}
 
-// Notification banner after 15s
+// Notification banner — mobile only
 setTimeout(()=>{
+  if(window.innerWidth>=768)return;
   const nb=document.getElementById('notifBanner');
+  if(!nb)return;
   nb.classList.add('show');
-  // Auto-dismiss after 8s
   setTimeout(()=>nb.classList.remove('show'),8000);
 },15000);
 
 // Nav
 let cur=null;
+const desk=()=>window.innerWidth>=768;
+
 function openApp(id){
-  if(cur)closeApp();
-  const v=document.getElementById('v-'+id);if(!v)return;
-  document.getElementById('home').classList.add('hid');
-  document.getElementById('dock').classList.add('hid');
-  requestAnimationFrame(()=>{v.classList.add('open');cur=id;
+  if(desk()){
+    document.querySelectorAll('.av').forEach(v=>v.classList.remove('open'));
+    const v=document.getElementById('v-'+id);if(!v)return;
+    v.classList.add('open');
+    document.querySelectorAll('.os-nav-item').forEach(el=>el.classList.remove('os-active'));
+    const ni=document.querySelector('.os-nav-item[data-app="'+id+'"]');if(ni)ni.classList.add('os-active');
     if(id==='messages')initMsgs();
     if(id==='timeline')initTl();
-  });
+  } else {
+    if(cur)closeApp();
+    const v=document.getElementById('v-'+id);if(!v)return;
+    document.getElementById('home').classList.add('hid');
+    document.getElementById('dock').classList.add('hid');
+    requestAnimationFrame(()=>{v.classList.add('open');cur=id;
+      if(id==='messages')initMsgs();
+      if(id==='timeline')initTl();
+    });
+  }
 }
 function closeApp(){
+  if(desk())return;
   if(!cur)return;
   document.getElementById('v-'+cur).classList.remove('open');cur=null;
   setTimeout(()=>{document.getElementById('home').classList.remove('hid');document.getElementById('dock').classList.remove('hid')},150);
 }
+// Auto-open Messages on desktop
+if(desk())openApp('messages');
 
 // Messages
 let mi=false;
