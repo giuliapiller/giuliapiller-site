@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Giulia Piller</title>
+<meta property="og:title" content="Giulia Piller — Strategy, Ventures & Business Building">
+<meta property="og:description" content="Columbia MS Tech Management | McKinsey | 2x Founder. Tap to explore.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://giuliapiller.com">
+<meta name="description" content="Giulia Piller — Strategy, Ventures & Business Building. Interactive portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f2f2f7;--card:#fff;--text:#1c1c1e;--text2:#3a3a3c;--text3:#8e8e93;
+  --accent:#007aff;--green:#34c759;--red:#ff3b30;--orange:#ff9500;
+  --purple:#af52de;--pink:#ff2d55;--indigo:#5856d6;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#000;min-height:100vh;min-height:100dvh;
+  display:flex;align-items:center;justify-content:center;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+
+.wrap{display:flex;align-items:center;justify-content:center;gap:60px;padding:40px;width:100%;max-width:1200px}
+
+/* Side panel desktop */
+.side{display:none;flex-direction:column;max-width:420px;flex-shrink:0}
+.side h1{font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.1;margin-bottom:12px}
+.side .s-sub{font-size:20px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:32px}
+.side .s-hint{font-size:14px;color:rgba(255,255,255,.25);display:flex;align-items:center;gap:8px}
+.side .s-hint span{display:inline-block;animation:arr 1.5s ease-in-out infinite}
+@keyframes arr{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+
+/* Phone */
+.phone{width:393px;height:852px;background:#1a1a1a;border-radius:55px;padding:11px;position:relative;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 0 1px rgba(0,0,0,.3),0 40px 100px rgba(0,0,0,.6);flex-shrink:0}
+.phone::before{content:'';position:absolute;right:-3px;top:180px;width:4px;height:80px;background:#2a2a2a;border-radius:0 2px 2px 0}
+.scr{width:100%;height:100%;border-radius:45px;overflow:hidden;position:relative;background:var(--bg)}
+
+/* Dynamic Island */
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:126px;height:37px;
+  background:#000;border-radius:50px;z-index:999}
+
+/* Apple-style notification banner */
+.notif-banner{position:absolute;top:12px;left:12px;right:12px;z-index:1000;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border-radius:20px;padding:12px 14px;display:flex;align-items:center;gap:11px;
+  box-shadow:0 8px 32px rgba(0,0,0,.12),0 0 0 0.5px rgba(0,0,0,.06);
+  transform:translateY(-120px);opacity:0;transition:all .5s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.notif-banner.show{transform:translateY(0);opacity:1}
+.nb-icon{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#667eea,#764ba2);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nb-body{flex:1;min-width:0}
+.nb-app{font-size:12px;font-weight:600;color:var(--text3);letter-spacing:.3px}
+.nb-title{font-size:14px;font-weight:600;color:var(--text);margin-top:1px}
+.nb-msg{font-size:13px;color:var(--text2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nb-time{font-size:11px;color:var(--text3);flex-shrink:0;align-self:flex-start;margin-top:2px}
+
+/* Status bar */
+.sbar{position:absolute;top:14px;left:36px;right:36px;display:flex;justify-content:space-between;
+  align-items:center;z-index:998;font-size:15px;font-weight:600;color:#000;pointer-events:none}
+.sbar-r{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500}
+
+/* Home bar */
+.hbar{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;
+  background:rgba(0,0,0,.18);border-radius:99px;z-index:999;cursor:pointer}
+
+/* ===== LOCK SCREEN ===== */
+.lock{position:absolute;inset:0;
+  background:linear-gradient(165deg,#1a1a2e 0%,#16213e 40%,#0f3460 80%,#1a1a2e 100%);
+  z-index:900;display:flex;flex-direction:column;align-items:center;color:#fff;cursor:pointer;
+  transition:all .7s cubic-bezier(.4,0,.2,1);border-radius:45px;overflow:hidden}
+.lock.gone{transform:translateY(-110%);opacity:0;pointer-events:none}
+.lock-top{padding-top:72px;text-align:center}
+.lock-t{font-size:80px;font-weight:200;letter-spacing:-3px;line-height:1}
+.lock-d{font-size:17px;font-weight:400;opacity:.6;margin-top:6px}
+.lock-ns{margin-top:40px;width:88%;display:flex;flex-direction:column;gap:10px}
+.lock-n{background:rgba(255,255,255,.1);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border-radius:16px;padding:13px 14px;display:flex;align-items:center;gap:11px;
+  opacity:0;transform:translateY(20px);animation:ni .5s ease forwards}
+.lock-n:nth-child(1){animation-delay:.6s}
+.lock-n:nth-child(2){animation-delay:1.3s}
+.lock-n:nth-child(3){animation-delay:2s}
+@keyframes ni{to{opacity:1;transform:translateY(0)}}
+.ni-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ni-body{flex:1;min-width:0}
+.ni-app{font-size:12px;font-weight:600;opacity:.85;letter-spacing:.2px}
+.ni-txt{font-size:13px;opacity:.6;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ni-time{font-size:11px;opacity:.35;flex-shrink:0;align-self:flex-start;margin-top:2px}
+.lock-sw{position:absolute;bottom:36px;font-size:13px;opacity:.3;animation:br 2.5s ease-in-out infinite}
+@keyframes br{0%,100%{opacity:.15;transform:translateY(0)}50%{opacity:.4;transform:translateY(-3px)}}
+
+/* ===== WALLPAPER ===== */
+.wall{position:absolute;inset:0;
+  background:linear-gradient(180deg,#e8f4f8 0%,#dce8f0 25%,#e4dfe8 50%,#f0e6e8 75%,#f2f2f7 100%);z-index:-1}
+
+/* ===== HOME SCREEN ===== */
+.home{position:absolute;inset:0;padding:60px 20px 110px;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;transition:all .5s cubic-bezier(.4,0,.2,1);z-index:10;scrollbar-width:none}
+.home::-webkit-scrollbar{display:none}
+.home.hid{transform:scale(.92);opacity:0;pointer-events:none}
+
+/* Widgets */
+.wg{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.w{background:rgba(255,255,255,.82);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-radius:24px;cursor:pointer;transition:transform .2s;position:relative;overflow:hidden}
+.w:active{transform:scale(.97)}
+
+/* Hero widget */
+.w-hero{padding:20px;display:flex;gap:14px;align-items:center}
+.w-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;
+  box-shadow:0 2px 12px rgba(0,0,0,.12);flex-shrink:0;background:#ddd}
+.w-info h2{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.5px}
+.w-info p{font-size:13px;color:var(--text3);margin-top:1px}
+.w-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;
+  color:var(--green);background:rgba(52,199,89,.1);padding:4px 10px;border-radius:20px;margin-top:5px}
+.w-sdot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:glo 2s infinite}
+
+/* Stat row */
+.w-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.w-stat{text-align:center;padding:16px 12px}
+.w-stat-i{font-size:24px;margin-bottom:6px}
+.w-stat-n{font-size:26px;font-weight:700;color:var(--text);letter-spacing:-1px}
+.w-stat-l{font-size:11px;font-weight:500;color:var(--text3);margin-top:2px}
+
+/* ===== APP GRID ===== */
+.sec-label{font-size:12px;font-weight:600;color:rgba(0,0,0,.3);text-transform:uppercase;
+  letter-spacing:.8px;margin-bottom:14px;padding-left:4px}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 0;margin-bottom:20px}
+.ai{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:transform .15s}
+.ai:active{transform:scale(.85)}
+.ai-img{width:60px;height:60px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:28px;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.ai-badge{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;border-radius:10px;
+  background:var(--red);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;
+  justify-content:center;padding:0 5px;border:2.5px solid var(--bg)}
+.ai-lbl{font-size:11px;color:var(--text);font-weight:400}
+
+/* ===== DOCK (with labels) ===== */
+.dock{position:absolute;bottom:16px;left:14px;right:14px;height:96px;
+  background:rgba(255,255,255,.65);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  border-radius:32px;display:flex;align-items:center;justify-content:space-evenly;z-index:50;
+  padding:0 4px;transition:all .4s ease}
+.dock.hid{opacity:0;pointer-events:none;transform:translateY(20px)}
+.dock .ai{gap:3px}
+.dock .ai-img{width:50px;height:50px;border-radius:12px;font-size:24px}
+.dock .ai-lbl{font-size:10px;color:var(--text2)}
+
+/* ===== APP VIEW ===== */
+.av{position:absolute;inset:0;z-index:600;background:var(--bg);border-radius:45px;overflow:hidden;
+  opacity:0;transform:scale(.4);pointer-events:none;transition:all .45s cubic-bezier(.4,0,.2,1)}
+.av.open{opacity:1;transform:scale(1);pointer-events:auto}
+.av-nav{position:sticky;top:0;z-index:10;padding:56px 16px 12px;
+  background:rgba(242,242,247,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  display:flex;align-items:center}
+.av-back{background:none;border:none;color:var(--accent);font-size:17px;font-weight:400;
+  font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:2px;padding:6px 0}
+.av-back svg{width:22px;height:22px}
+.av-title{position:absolute;left:50%;transform:translateX(-50%);font-size:17px;font-weight:600;color:var(--text)}
+.av-body{height:calc(100% - 90px);overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.av-body::-webkit-scrollbar{display:none}
+
+/* ===== MESSAGES ===== */
+.im-hdr{text-align:center;padding:10px 0 16px}
+.im-av{width:64px;height:64px;border-radius:50%;margin:0 auto 8px;object-fit:cover;background:#ddd}
+.im-nm{font-size:17px;font-weight:600;color:var(--text)}
+.im-lb{font-size:13px;color:var(--text3)}
+.msgs{padding:0 16px;display:flex;flex-direction:column;gap:4px;padding-bottom:80px}
+.msg-t{text-align:center;font-size:12px;color:var(--text3);padding:12px 0 4px}
+.m{max-width:76%;padding:9px 14px;font-size:16px;line-height:1.38;border-radius:18px;
+  opacity:0;transform:translateY(8px) scale(.95);animation:mp .35s ease forwards;word-wrap:break-word}
+.m.in{background:#e9e9eb;color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+.m.out{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+@keyframes mp{to{opacity:1;transform:translateY(0) scale(1)}}
+.tp{display:flex;gap:5px;padding:12px 16px;align-self:flex-start;background:#e9e9eb;
+  border-radius:18px;border-bottom-left-radius:4px;opacity:0;transition:opacity .2s}
+.tp.on{opacity:1}
+.td{width:8px;height:8px;border-radius:50%;background:#a0a0a5;animation:bn 1.2s ease-in-out infinite}
+.td:nth-child(2){animation-delay:.15s}.td:nth-child(3){animation-delay:.3s}
+@keyframes bn{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0;align-self:flex-start;max-width:95%}
+.chip{padding:9px 15px;border-radius:18px;background:#fff;border:1.5px solid var(--accent);
+  color:var(--accent);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .2s}
+.chip:hover{background:var(--accent);color:#fff}
+.mbar{position:absolute;bottom:0;left:0;right:0;padding:8px 14px 28px;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  display:flex;gap:8px;align-items:center}
+.min{flex:1;padding:10px 16px;border-radius:22px;border:1px solid #d1d1d6;font-size:16px;
+  font-family:inherit;outline:none;background:#fff;transition:border-color .2s}
+.min:focus{border-color:var(--accent)}
+.msend{width:34px;height:34px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .1s}
+.msend:active{transform:scale(.88)}
+.msend svg{width:17px;height:17px;fill:#fff}
+
+/* ===== JOURNEY — Chapter-scroll design ===== */
+.j-wrap{padding:0 0 40px}
+
+/* Section header - full bleed */
+.j-section{padding:28px 20px 16px;position:relative}
+.j-section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--accent);margin-bottom:4px}
+.j-section-title{font-size:28px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1.1}
+.j-section.edu .j-section-label{color:var(--purple)}
+
+/* Chapter cards */
+.j-ch{margin:0 16px 2px;position:relative;
+  opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.4,0,.2,1)}
+.j-ch.vis{opacity:1;transform:translateY(0)}
+
+/* The actual card */
+.j-card{background:#fff;border-radius:20px;padding:0;overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,.04);position:relative}
+
+/* Accent stripe at top of card */
+.j-stripe{height:3px;width:100%;border-radius:20px 20px 0 0}
+
+.j-inner{padding:16px 18px 18px}
+
+/* Chapter number */
+.j-num{position:absolute;top:14px;right:16px;font-size:48px;font-weight:800;
+  color:rgba(0,0,0,.03);line-height:1;letter-spacing:-2px;pointer-events:none}
+
+.j-role{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.3px;line-height:1.2}
+.j-co{font-size:15px;font-weight:600;margin-top:3px}
+.j-meta{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--text3)}
+.j-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--text3)}
+.j-desc{font-size:14px;color:var(--text2);line-height:1.55;margin-top:10px}
+.j-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.j-tag{padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.2px}
+
+/* Color themes per type */
+.j-ch[data-type="vc"] .j-stripe{background:linear-gradient(90deg,#007aff,#5ac8fa)}
+.j-ch[data-type="vc"] .j-co{color:#007aff}
+.j-ch[data-type="vc"] .j-tag{background:rgba(0,122,255,.07);color:#007aff}
+
+.j-ch[data-type="consulting"] .j-stripe{background:linear-gradient(90deg,#1a73e8,#4285f4)}
+.j-ch[data-type="consulting"] .j-co{color:#1a73e8}
+.j-ch[data-type="consulting"] .j-tag{background:rgba(26,115,232,.07);color:#1a73e8}
+
+.j-ch[data-type="finance"] .j-stripe{background:linear-gradient(90deg,#34c759,#30d158)}
+.j-ch[data-type="finance"] .j-co{color:#2d8a4e}
+.j-ch[data-type="finance"] .j-tag{background:rgba(52,199,89,.08);color:#2d8a4e}
+
+.j-ch[data-type="startup"] .j-stripe{background:linear-gradient(90deg,#ff9500,#ffcc02)}
+.j-ch[data-type="startup"] .j-co{color:#c77600}
+.j-ch[data-type="startup"] .j-tag{background:rgba(255,149,0,.08);color:#c77600}
+
+.j-ch[data-type="founder"] .j-stripe{background:linear-gradient(90deg,#af52de,#bf5af2)}
+.j-ch[data-type="founder"] .j-co{color:#9332bf}
+.j-ch[data-type="founder"] .j-tag{background:rgba(175,82,222,.08);color:#9332bf}
+/* Founder badge */
+.j-ch[data-type="founder"] .j-card{box-shadow:0 2px 12px rgba(175,82,222,.1)}
+.j-founder-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.8px;color:#9332bf;background:rgba(175,82,222,.08);
+  padding:3px 8px;border-radius:6px;margin-bottom:6px}
+
+.j-ch[data-type="ecom"] .j-stripe{background:linear-gradient(90deg,#ff6b6b,#ff9500)}
+.j-ch[data-type="ecom"] .j-co{color:#d94f4f}
+.j-ch[data-type="ecom"] .j-tag{background:rgba(255,107,107,.07);color:#d94f4f}
+
+.j-ch[data-type="pe"] .j-stripe{background:linear-gradient(90deg,#636366,#8e8e93)}
+.j-ch[data-type="pe"] .j-co{color:#636366}
+.j-ch[data-type="pe"] .j-tag{background:rgba(99,99,102,.07);color:#636366}
+
+/* Education styles */
+.j-ch[data-type="edu"] .j-stripe{background:linear-gradient(90deg,#5856d6,#af52de)}
+.j-ch[data-type="edu"] .j-co{color:#5856d6}
+.j-ch[data-type="edu"] .j-tag{background:rgba(88,86,214,.07);color:#5856d6}
+.j-ch[data-type="edu"] .j-card{background:linear-gradient(180deg,#faf9ff,#fff)}
+
+/* Connector line between cards */
+.j-connector{width:2px;height:16px;background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.02));
+  margin:0 auto;border-radius:1px}
+
+/* Scroll progress line */
+.j-progress{position:absolute;left:0;top:0;width:3px;height:0;
+  background:linear-gradient(180deg,var(--accent),var(--purple));border-radius:0 2px 2px 0;
+  transition:height .3s ease;z-index:5}
+
+/* ===== PORTFOLIO ===== */
+.pf{padding:12px 16px}
+.pf-c{background:#fff;border-radius:22px;overflow:hidden;margin-bottom:14px;
+  box-shadow:0 1px 6px rgba(0,0,0,.04);cursor:pointer;transition:transform .2s}
+.pf-c:active{transform:scale(.98)}
+.pf-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:52px}
+.pf-inf{padding:14px 16px 16px}
+.pf-tt{font-size:17px;font-weight:600;color:var(--text)}
+.pf-sub{font-size:13px;color:var(--text3);margin-top:3px;line-height:1.4}
+.pf-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.pf-tag{padding:4px 10px;border-radius:8px;font-size:11px;font-weight:600}
+.pf-tag.bl{background:#e8f0fe;color:#1a73e8}
+.pf-tag.pk{background:#fce8f4;color:#d81b60}
+.pf-tag.gn{background:#e8f5e9;color:#2e7d32}
+.pf-tag.or{background:#fff3e0;color:#e65100}
+.pf-tag.pu{background:#f3e8ff;color:#7c3aed}
+
+/* ===== FIND ME ===== */
+.fm{padding:20px 16px}
+.fm-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px}
+.fm-sub{font-size:14px;color:var(--text3);margin-bottom:20px}
+.fm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fm-card{background:#fff;border-radius:20px;padding:20px 16px;text-align:center;transition:transform .2s}
+.fm-card:active{transform:scale(.96)}
+.fm-emoji{font-size:40px;margin-bottom:10px}
+.fm-label{font-size:15px;font-weight:600;color:var(--text)}
+.fm-desc{font-size:12px;color:var(--text3);margin-top:3px}
+
+/* ===== MEET GIULIA ===== */
+.mg{padding:20px 16px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.mg-circle{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#e0e7ff,#f0e6ff);
+  display:flex;align-items:center;justify-content:center;position:relative;margin:20px 0 24px;overflow:hidden}
+.mg-photo{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.mg-ring{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(0,122,255,.15);
+  animation:rp 2.5s ease-in-out infinite}
+.mg-ring:nth-child(2){inset:-18px;animation-delay:.7s}
+@keyframes rp{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.04);opacity:0}}
+.mg-t{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-.5px}
+.mg-s{font-size:15px;color:var(--text3);line-height:1.5;max-width:280px;margin:8px 0 28px}
+.mg-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:280px}
+.mg-btn{padding:15px 20px;border-radius:14px;border:none;font-size:16px;font-weight:600;
+  font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform .15s}
+.mg-btn:active{transform:scale(.97)}
+.mg-btn.pri{background:var(--accent);color:#fff}
+.mg-btn.sec{background:rgba(0,122,255,.08);color:var(--accent)}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:860px){.side{display:flex}}
+@media(max-width:430px){
+  body{background:var(--bg)}
+  .wrap{padding:0}
+  .phone{width:100%;height:100vh;height:100dvh;border-radius:0;padding:0;box-shadow:none;background:var(--bg)}
+  .scr,.lock,.av{border-radius:0}
+  .dock{border-radius:26px}
+  .hbar{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="side">
+  <h1>Giulia<br>Piller</h1>
+  <p class="s-sub">Originally from Munich. Five years across London and Berlin in startups, consulting, and VC.<br>Columbia MS · McKinsey · 2x Founder.</p>
+  <p class="s-hint"><span>→</span> Tap the phone to explore</p>
+</div>
+
+<div class="phone">
+<div class="scr">
+
+<!-- Dynamic Island -->
+<div class="island"></div>
+
+<!-- Notification banner (appears after 15s) -->
+<div class="notif-banner" id="notifBanner" onclick="window.open('https://calendly.com/giuliapiller','_blank')">
+  <div class="nb-icon">📅</div>
+  <div class="nb-body">
+    <div class="nb-app">MEET GIULIA</div>
+    <div class="nb-title">Let's meet!</div>
+    <div class="nb-msg">Book a 15-min intro call →</div>
+  </div>
+  <div class="nb-time">now</div>
+</div>
+
+<!-- Status bar -->
+<div class="sbar">
+  <span id="sTime">9:41</span>
+  <div class="sbar-r">
+    <svg width="17" height="12" viewBox="0 0 17 12"><path d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" fill="currentColor"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 3a7 7 0 00-5 2l1.4 1.4A5 5 0 018 5a5 5 0 013.6 1.4L13 5a7 7 0 00-5-2zm0 4c-1 0-1.8.4-2.5 1l1.4 1.4a1.5 1.5 0 012.2 0L10.5 8c-.7-.6-1.5-1-2.5-1z" fill="currentColor"/></svg>
+    <svg width="27" height="13" viewBox="0 0 27 13"><rect x="0" y="1" width="22" height="11" rx="3" stroke="currentColor" fill="none" stroke-width="1.2"/><rect x="23.5" y="4.5" width="2.5" height="4" rx="1" fill="currentColor" opacity=".35"/><rect x="2" y="3" width="17" height="7" rx="1.5" fill="currentColor"/></svg>
+  </div>
+</div>
+
+<!-- Lock Screen -->
+<div class="lock" id="lock" onclick="unlock()">
+  <div class="lock-top">
+    <div class="lock-t" id="lTime">9:41</div>
+    <div class="lock-d" id="lDate">Monday, March 23</div>
+  </div>
+  <div class="lock-ns">
+    <div class="lock-n">
+      <div class="ni-ico" style="background:rgba(52,199,89,.2)">💬</div>
+      <div class="ni-body"><div class="ni-app">Messages</div><div class="ni-txt">Giulia: Hey! Let me tell you about myself...</div></div>
+      <div class="ni-time">now</div>
+    </div>
+    <div class="lock-n">
+      <div class="ni-ico" style="background:rgba(175,82,222,.2)">📁</div>
+      <div class="ni-body"><div class="ni-app">Portfolio</div><div class="ni-txt">Voice Z · atmossphere · McKinsey projects</div></div>
+      <div class="ni-time">2m</div>
+    </div>
+    <div class="lock-n">
+      <div class="ni-ico" style="background:rgba(0,122,255,.2)">🎓</div>
+      <div class="ni-body"><div class="ni-app">Journey</div><div class="ni-txt">Columbia MS '26 · LSE First Class Honours</div></div>
+      <div class="ni-time">5m</div>
+    </div>
+  </div>
+  <div class="lock-sw">Tap to unlock</div>
+</div>
+
+<div class="wall"></div>
+
+<!-- Home Screen -->
+<div class="home" id="home">
+  <div class="wg">
+    <!-- Hero widget -->
+    <div class="w w-hero" onclick="openApp('messages')">
+      <img class="w-photo" id="heroPhoto" src="photo.jpg" alt="Giulia">
+      <div class="w-info">
+        <h2>Giulia Piller</h2>
+        <p>Strategy · Ventures · Business</p>
+        <div class="w-status"><div class="w-sdot"></div>Open to opportunities</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="w-row">
+      <div class="w w-stat">
+        <div class="w-stat-i">🚀</div>
+        <div class="w-stat-n">2x</div>
+        <div class="w-stat-l">Founder</div>
+      </div>
+      <div class="w w-stat">
+        <div class="w-stat-i">🎓</div>
+        <div class="w-stat-n">LSE + CU</div>
+        <div class="w-stat-l">First Class · Columbia MS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App grid -->
+  <div class="apps">
+    <div class="ai" onclick="openApp('messages')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#30d158)">
+        <div class="ai-badge">1</div>💬
+      </div>
+      <span class="ai-lbl">Messages</span>
+    </div>
+    <div class="ai" onclick="openApp('timeline')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#5856d6,#af52de)">📅</div>
+      <span class="ai-lbl">Journey</span>
+    </div>
+    <div class="ai" onclick="openApp('portfolio')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#ff6b6b,#ff9500)">📁</div>
+      <span class="ai-lbl">Portfolio</span>
+    </div>
+    <div class="ai" onclick="openApp('findme')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#a8e063)">🌿</div>
+      <span class="ai-lbl">Find Me</span>
+    </div>
+    <div class="ai" onclick="openApp('meet')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#667eea,#764ba2)">🎥</div>
+      <span class="ai-lbl">Meet Giulia</span>
+    </div>
+    <div class="ai" onclick="window.open('https://www.linkedin.com/in/giulia-piller-2605b81a2/','_blank')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#0077b5,#00a0dc)">💼</div>
+      <span class="ai-lbl">LinkedIn</span>
+    </div>
+    <div class="ai" onclick="window.open('https://github.com/giuliapiller','_blank')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#24292e,#586069)">🐙</div>
+      <span class="ai-lbl">GitHub</span>
+    </div>
+    <div class="ai" onclick="downloadCV()">
+      <div class="ai-img" style="background:linear-gradient(135deg,#ff2d55,#ff6b81)">📄</div>
+      <span class="ai-lbl">Resume</span>
+    </div>
+  </div>
+</div>
+
+<!-- Dock (with labels) -->
+<div class="dock" id="dock">
+  <div class="ai" onclick="openApp('messages')">
+    <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#30d158)">💬</div>
+    <span class="ai-lbl">Messages</span>
+  </div>
+  <div class="ai" onclick="openApp('portfolio')">
+    <div class="ai-img" style="background:linear-gradient(135deg,#ff6b6b,#ff9500)">📁</div>
+    <span class="ai-lbl">Portfolio</span>
+  </div>
+  <div class="ai" onclick="openApp('findme')">
+    <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#a8e063)">🌿</div>
+    <span class="ai-lbl">Find Me</span>
+  </div>
+  <div class="ai" onclick="openApp('meet')">
+    <div class="ai-img" style="background:linear-gradient(135deg,#667eea,#764ba2)">🎥</div>
+    <span class="ai-lbl">Meet Giulia</span>
+  </div>
+</div>
+
+<div class="hbar" onclick="closeApp()"></div>
+
+<!-- ===== MESSAGES ===== -->
+<div class="av" id="v-messages">
+  <div class="av-nav">
+    <button class="av-back" onclick="closeApp()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+    <div class="av-title">Giulia Piller</div>
+  </div>
+  <div class="av-body" id="msgScr">
+    <div class="im-hdr">
+      <img class="im-av" src="photo.jpg" alt="Giulia">
+      <div class="im-nm">Giulia Piller</div>
+      <div class="im-lb">Strategy · Ventures · Business</div>
+    </div>
+    <div class="msgs" id="msgs"><div class="msg-t">Today</div></div>
+  </div>
+  <div class="mbar">
+    <input class="min" id="msgIn" placeholder="Ask Giulia anything..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="msend" onclick="sendMsg()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+  </div>
+</div>
+
+<!-- ===== JOURNEY ===== -->
+<div class="av" id="v-timeline">
+  <div class="av-nav">
+    <button class="av-back" onclick="closeApp()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+    <div class="av-title">My Journey</div>
+  </div>
+  <div class="av-body" id="jScroll">
+    <div class="j-wrap" id="jWrap">
+      <div class="j-progress" id="jProgress"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PORTFOLIO ===== -->
+<div class="av" id="v-portfolio">
+  <div class="av-nav">
+    <button class="av-back" onclick="closeApp()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+    <div class="av-title">Portfolio</div>
+  </div>
+  <div class="av-body"><div class="pf" id="pfW"></div></div>
+</div>
+
+<!-- ===== FIND ME ===== -->
+<div class="av" id="v-findme">
+  <div class="av-nav">
+    <button class="av-back" onclick="closeApp()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+    <div class="av-title">Find Me</div>
+  </div>
+  <div class="av-body">
+    <div class="fm">
+      <div class="fm-title">Where you'll find me</div>
+      <div class="fm-sub">When I'm not building the next thing...</div>
+      <div class="fm-grid">
+        <div class="fm-card">
+          <div class="fm-emoji">🍵</div>
+          <div class="fm-label">Matcha</div>
+          <div class="fm-desc">Oat milk, always</div>
+        </div>
+        <div class="fm-card">
+          <div class="fm-emoji">🧘‍♀️</div>
+          <div class="fm-label">Pilates</div>
+          <div class="fm-desc">Reformer preferred</div>
+        </div>
+        <div class="fm-card">
+          <div class="fm-emoji">🔥</div>
+          <div class="fm-label">Hot Yoga</div>
+          <div class="fm-desc">37°C and breathing</div>
+        </div>
+        <div class="fm-card">
+          <div class="fm-emoji">✈️</div>
+          <div class="fm-label">Traveling</div>
+          <div class="fm-desc">6+ countries lived in</div>
+        </div>
+        <div class="fm-card">
+          <div class="fm-emoji">⚽</div>
+          <div class="fm-label">Sport</div>
+          <div class="fm-desc">Tennis, skiing, running</div>
+        </div>
+        <div class="fm-card">
+          <div class="fm-emoji">📚</div>
+          <div class="fm-label">Reading</div>
+          <div class="fm-desc">Strategy & biographies</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MEET GIULIA ===== -->
+<div class="av" id="v-meet">
+  <div class="av-nav">
+    <button class="av-back" onclick="closeApp()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+    <div class="av-title">Meet Giulia</div>
+  </div>
+  <div class="av-body">
+    <div class="mg">
+      <div class="mg-circle">
+        <div class="mg-ring"></div>
+        <div class="mg-ring"></div>
+        <img class="mg-photo" src="photo.jpg" alt="Giulia">
+      </div>
+      <div class="mg-t">Let's Connect</div>
+      <div class="mg-s">Whether you want to chat about a role, a venture, or just say hi — I'd love to hear from you.</div>
+      <div class="mg-btns">
+        <button class="mg-btn pri" onclick="closeApp();setTimeout(()=>openApp('messages'),400)">💬 Start a Conversation</button>
+        <button class="mg-btn sec" onclick="window.open('https://calendly.com/giuliapiller','_blank')">📅 Book a 15-min Call</button>
+        <button class="mg-btn sec" onclick="window.open('https://www.linkedin.com/in/giulia-piller-2605b81a2/','_blank')">💼 Connect on LinkedIn</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+const G = {
+  name: "Giulia Piller",
+  intro: [
+    "Hey! 👋",
+    "I'm Giulia — strategy, ventures and business building is what I do.",
+    "I'm currently finishing my MS in Technology Management at Columbia, while scouting for Picus Capital in NYC.",
+    "Before that: McKinsey business analyst, growth equity at HV Capital, and I co-founded two companies — Voice Z (Gen Z consultancy) and atmossphere (award-winning sustainability startup).",
+    "LSE First Class Honours, Le Wagon growth marketing grad, and I've worked across Munich, London, Berlin and New York.",
+    "I also build things — check out my AI Researcher Tracker on GitHub, or the ToyStore e-commerce site from Le Wagon.",
+    "Ask me anything — I'd love to chat! 😊"
+  ],
+  quickReplies: [
+    "Tell me about Voice Z",
+    "What was your McKinsey experience like?",
+    "What are you looking for next?",
+    "What makes you unique?"
+  ],
+  responses: {
+    "Tell me about Voice Z": "Voice Z was a community, consultancy and marketing agency I co-founded in 2022. We helped companies authentically connect with Gen Z — through tailored research, workshops, presentations, and social media strategies. As Gen Z ourselves, we were the bridge between brands and the next generation. It taught me how to build something from zero, sell to corporates, and lead a team while still at university.",
+    "What was your McKinsey experience like?": "Incredibly formative. As a Business Analyst intern in Berlin, I worked on strategic projects that required rigorous analytical thinking and structured problem-solving. What I loved most was the client-facing work — translating complex analysis into clear recommendations that executives could act on. It sharpened my ability to think frameworks-first and communicate with precision.",
+    "What are you looking for next?": "I'm looking for a role where I can combine my strategy background with my entrepreneurial drive. Ideally in venture capital, tech strategy, or business building at a high-growth company. I love the intersection of technology and business — understanding what makes products succeed commercially and helping build the next generation of great companies. NYC or Europe.",
+    "What makes you unique?": "Three things: First, I've actually built companies — not just analyzed them. Co-founding Voice Z and atmossphere gave me a founder's perspective that most candidates can't offer. Second, I'm genuinely cross-functional: McKinsey strategy, HV Capital investing, Le Wagon growth marketing, and Columbia tech management. Third, I've lived and worked across 4 countries, so I bring real cultural fluency to international teams."
+  },
+  timeline: [
+    { label: "Experience", items: [
+      { role: "Scout", co: "Picus Capital", when: "Dec 2024 – Present", loc: "New York City", desc: "Sourcing early-stage tech deals for a $1B+ AUM fund with 170+ investments across 20+ countries.", tags: ["VC","Deal Sourcing","Tech"], type: "work" },
+      { role: "Business Analyst Intern", co: "McKinsey & Company", when: "Oct – Dec 2024", loc: "Berlin", desc: "Strategic consulting engagements with rigorous analytical problem-solving and client-facing delivery.", tags: ["Strategy","Consulting","Analytics"], type: "work" },
+      { role: "Investment Intern · Growth Equity", co: "HV Capital", when: "Apr – Aug 2024", loc: "Berlin", desc: "Equity tickets up to €60M, Series B to pre-IPO. Evaluated growth-stage tech companies.", tags: ["Growth Equity","Due Diligence","Finance"], type: "work" },
+      { role: "Business Building Intern", co: "smatch", when: "Jan – Mar 2024", loc: "Hamburg", desc: "Built B2B marketplace technology for retail resource efficiency, connecting commerce partners.", tags: ["Marketplace","B2B","Startup"], type: "work" },
+      { role: "Co-Founder", co: "Voice Z", when: "2022 – 2023", loc: "London", desc: "Next-gen consultancy & marketing agency bridging companies and Gen Z through research, workshops, and social strategies.", tags: ["Founder","Gen Z","Marketing"], type: "work" },
+      { role: "M&A Intern", co: "Heroes", when: "Jun – Aug 2021", loc: "London", desc: "Acquisitions, operations and scaling of Amazon FBA brands.", tags: ["M&A","E-commerce","Operations"], type: "work" },
+      { role: "PE Analyst Intern", co: "CERTINA GROUP", when: "Jun – Aug 2019", loc: "Munich", desc: "Private equity analysis and portfolio company evaluation.", tags: ["Private Equity","Analysis"], type: "work" },
+      { role: "Co-Founder", co: "atmossphere", when: "Sep 2017 – Jul 2018", loc: "Munich", desc: "Award-winning student startup developing moss installations to absorb fine particle pollution and improve air quality.", tags: ["Founder","Sustainability","Award-Winning"], type: "work" }
+    ]},
+    { label: "Education", items: [
+      { role: "MS Technology Management", co: "Columbia University", when: "Aug 2025 – Jun 2026", loc: "New York City", desc: "Focus: AI/ML, Databases, Full-Stack Products, Blockchain & Web 3.0, Finance. Graduate Consultant @Ci3 | Board Member @VC Club.", tags: ["AI/ML","Tech","Finance"], type: "edu" },
+      { role: "BS Politics, Philosophy & Economics", co: "London School of Economics (LSE)", when: "2019 – 2023", loc: "London", desc: "First Class Honours — Stats (89%), Maths (71%), Econ (80%), Logic (81%).", tags: ["First Class","PPE","Stats"], type: "edu" },
+      { role: "Growth Marketing Bootcamp", co: "Le Wagon", when: "Apr – Jun 2025", loc: "", desc: "Intensive growth marketing program covering acquisition, analytics, and automation.", tags: ["Growth","Marketing","Analytics"], type: "edu" }
+    ]}
+  ],
+  projects: [
+    { title: "Voice Z", sub: "Co-founded Gen Z consultancy & marketing agency. Advised corporates on authentic next-gen engagement.", emoji: "🗣️", bg: "linear-gradient(135deg,#667eea,#764ba2)", tags: [{l:"Founder",c:"pu"},{l:"Strategy",c:"bl"},{l:"Marketing",c:"pk"}] },
+    { title: "atmossphere", sub: "Award-winning startup — moss installations absorbing air pollution. Featured in German press.", emoji: "🌿", bg: "linear-gradient(135deg,#34c759,#a8e063)", tags: [{l:"Founder",c:"gn"},{l:"Sustainability",c:"bl"},{l:"Award-Winning",c:"or"}] },
+    { title: "GI Researcher Tracker", sub: "AI research intelligence system tracking cultural relevance in the research community. Python + Slack integration + automated weekly briefings.", emoji: "🤖", bg: "linear-gradient(135deg,#24292e,#586069)", tags: [{l:"Python",c:"bl"},{l:"AI",c:"pu"},{l:"Automation",c:"gn"}], link: "https://github.com/giuliapiller/gi-researcher-tracker" },
+    { title: "ToyStore", sub: "E-commerce storefront built with Jekyll during Le Wagon bootcamp. Full product catalog and checkout flow.", emoji: "🧸", bg: "linear-gradient(135deg,#f093fb,#f5576c)", tags: [{l:"HTML/JS",c:"or"},{l:"E-commerce",c:"pk"},{l:"Le Wagon",c:"bl"}], link: "https://github.com/giuliapiller/ToyStore" },
+    { title: "Picus Capital Scouting", sub: "Sourcing early-stage tech opportunities across 20+ countries for a $1B+ AUM fund.", emoji: "🔭", bg: "linear-gradient(135deg,#4facfe,#00f2fe)", tags: [{l:"VC",c:"bl"},{l:"Deal Flow",c:"pu"},{l:"Tech",c:"gn"}] },
+    { title: "Columbia Impact Investing", sub: "Graduate Consultant at Ci3 — Columbia's impact investing initiative.", emoji: "💡", bg: "linear-gradient(135deg,#ff9500,#ffcc02)", tags: [{l:"Impact",c:"or"},{l:"Consulting",c:"bl"},{l:"Finance",c:"gn"}] }
+  ]
+};
+
+// Time
+function tick(){
+  const d=new Date(),t=`${d.getHours()}:${d.getMinutes().toString().padStart(2,'0')}`;
+  document.getElementById('sTime').textContent=t;
+  document.getElementById('lTime').textContent=t;
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const mos=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('lDate').textContent=`${days[d.getDay()]}, ${mos[d.getMonth()]} ${d.getDate()}`;
+}
+tick();setInterval(tick,30000);
+
+function unlock(){document.getElementById('lock').classList.add('gone')}
+
+// Notification banner after 15s
+setTimeout(()=>{
+  const nb=document.getElementById('notifBanner');
+  nb.classList.add('show');
+  // Auto-dismiss after 8s
+  setTimeout(()=>nb.classList.remove('show'),8000);
+},15000);
+
+// Nav
+let cur=null;
+function openApp(id){
+  if(cur)closeApp();
+  const v=document.getElementById('v-'+id);if(!v)return;
+  document.getElementById('home').classList.add('hid');
+  document.getElementById('dock').classList.add('hid');
+  requestAnimationFrame(()=>{v.classList.add('open');cur=id;
+    if(id==='messages')initMsgs();
+    if(id==='timeline')initTl();
+    if(id==='portfolio')initPf();
+  });
+}
+function closeApp(){
+  if(!cur)return;
+  document.getElementById('v-'+cur).classList.remove('open');cur=null;
+  setTimeout(()=>{document.getElementById('home').classList.remove('hid');document.getElementById('dock').classList.remove('hid')},150);
+}
+
+// Messages
+let mi=false;
+function initMsgs(){
+  if(mi)return;mi=true;
+  const c=document.getElementById('msgs'),s=document.getElementById('msgScr');
+  let d=400;
+  G.intro.forEach((txt,i)=>{
+    setTimeout(()=>{
+      const tp=document.createElement('div');tp.className='tp on';
+      tp.innerHTML='<div class="td"></div><div class="td"></div><div class="td"></div>';
+      c.appendChild(tp);s.scrollTop=s.scrollHeight;
+      setTimeout(()=>{
+        tp.remove();
+        const m=document.createElement('div');m.className='m in';m.textContent=txt;
+        c.appendChild(m);s.scrollTop=s.scrollHeight;
+        if(i===G.intro.length-1)setTimeout(showChips,400);
+      },700+Math.random()*300);
+    },d);
+    d+=1600+Math.random()*400;
+  });
+}
+function showChips(){
+  const c=document.getElementById('msgs'),s=document.getElementById('msgScr');
+  const w=document.createElement('div');w.className='chips';
+  G.quickReplies.forEach(t=>{
+    const b=document.createElement('button');b.className='chip';b.textContent=t;
+    b.onclick=()=>{w.remove();addOut(t);setTimeout(()=>reply(t),500)};
+    w.appendChild(b);
+  });
+  c.appendChild(w);s.scrollTop=s.scrollHeight;
+}
+function addOut(t){
+  const c=document.getElementById('msgs'),s=document.getElementById('msgScr');
+  const m=document.createElement('div');m.className='m out';m.textContent=t;
+  c.appendChild(m);s.scrollTop=s.scrollHeight;
+}
+function reply(q){
+  const c=document.getElementById('msgs'),s=document.getElementById('msgScr');
+  const tp=document.createElement('div');tp.className='tp on';
+  tp.innerHTML='<div class="td"></div><div class="td"></div><div class="td"></div>';
+  c.appendChild(tp);s.scrollTop=s.scrollHeight;
+  const ans=G.responses[q]||"Great question! I'd love to discuss that in detail. Let's connect — drop me a message on LinkedIn or book a quick call! 😊";
+  setTimeout(()=>{
+    tp.remove();
+    const m=document.createElement('div');m.className='m in';m.textContent=ans;
+    c.appendChild(m);s.scrollTop=s.scrollHeight;
+    setTimeout(showChips,400);
+  },1000+Math.random()*800);
+}
+function sendMsg(){
+  const inp=document.getElementById('msgIn'),t=inp.value.trim();
+  if(!t)return;inp.value='';
+  document.querySelectorAll('.chips').forEach(e=>e.remove());
+  addOut(t);setTimeout(()=>reply(t),500);
+}
+
+// Journey — chapter-scroll with IntersectionObserver
+let ti=false;
+const journeyData = [
+  // Experience
+  { section: "Experience", sectionTitle: "Where I've been" },
+  { num:"01", role:"Scout", co:"Picus Capital", when:"Dec 2024 – Present", loc:"New York City",
+    desc:"Sourcing early-stage tech deals for a $1B+ AUM fund with 170+ investments across 20+ countries.",
+    tags:["VC","Deal Sourcing","Tech"], type:"vc" },
+  { num:"02", role:"Business Analyst Intern", co:"McKinsey & Company", when:"Oct – Dec 2024", loc:"Berlin",
+    desc:"Strategic consulting engagements with rigorous analytical problem-solving and client-facing delivery.",
+    tags:["Strategy","Consulting","Analytics"], type:"consulting" },
+  { num:"03", role:"Investment Intern · Growth Equity", co:"HV Capital", when:"Apr – Aug 2024", loc:"Berlin",
+    desc:"Equity tickets up to €60M, Series B to pre-IPO. Evaluated growth-stage tech companies.",
+    tags:["Growth Equity","Due Diligence","Finance"], type:"finance" },
+  { num:"04", role:"Business Building Intern", co:"smatch", when:"Jan – Mar 2024", loc:"Hamburg",
+    desc:"Built B2B marketplace technology for retail resource efficiency, connecting commerce partners.",
+    tags:["Marketplace","B2B","Startup"], type:"startup" },
+  { num:"05", role:"Co-Founder", co:"Voice Z", when:"2022 – 2023", loc:"London",
+    desc:"Next-gen consultancy & marketing agency bridging companies and Gen Z through research, workshops, and social strategies.",
+    tags:["Founder","Gen Z","Marketing"], type:"founder", founder:true },
+  { num:"06", role:"M&A Intern", co:"Heroes", when:"Jun – Aug 2021", loc:"London",
+    desc:"Acquisitions, operations and scaling of Amazon FBA brands.",
+    tags:["M&A","E-commerce","Operations"], type:"ecom" },
+  { num:"07", role:"PE Analyst Intern", co:"CERTINA GROUP", when:"Jun – Aug 2019", loc:"Munich",
+    desc:"Private equity analysis and portfolio company evaluation.",
+    tags:["Private Equity","Analysis"], type:"pe" },
+  { num:"08", role:"Co-Founder", co:"atmossphere", when:"Sep 2017 – Jul 2018", loc:"Munich",
+    desc:"Award-winning student startup developing moss installations to absorb fine particle pollution and improve air quality.",
+    tags:["Founder","Sustainability","Award-Winning"], type:"founder", founder:true },
+  // Education
+  { section: "Education", sectionTitle: "Where I've learned" },
+  { num:"01", role:"MS Technology Management", co:"Columbia University", when:"Aug 2025 – Jun 2026", loc:"New York City",
+    desc:"Focus: AI/ML, Databases, Full-Stack Products, Blockchain & Web 3.0, Finance. Graduate Consultant @Ci3 | Board Member @VC Club.",
+    tags:["AI/ML","Tech","Finance"], type:"edu" },
+  { num:"02", role:"BS Politics, Philosophy & Economics", co:"London School of Economics (LSE)", when:"2019 – 2023", loc:"London",
+    desc:"First Class Honours — Stats (89%), Maths (71%), Econ (80%), Logic (81%).",
+    tags:["First Class","PPE","Stats"], type:"edu" },
+  { num:"03", role:"Growth Marketing Bootcamp", co:"Le Wagon", when:"Apr – Jun 2025", loc:"",
+    desc:"Intensive growth marketing program covering acquisition, analytics, and automation.",
+    tags:["Growth","Marketing","Analytics"], type:"edu" }
+];
+
+function initTl(){
+  if(ti)return;ti=true;
+  const w=document.getElementById('jWrap');
+  const scroll=document.getElementById('jScroll');
+
+  journeyData.forEach((it,i)=>{
+    // Section header
+    if(it.section){
+      const s=document.createElement('div');
+      s.className='j-section'+(it.section==='Education'?' edu':'');
+      s.innerHTML=`<div class="j-section-label">${it.section}</div><div class="j-section-title">${it.sectionTitle}</div>`;
+      w.appendChild(s);
+      return;
+    }
+
+    // Connector line between cards
+    if(i>1 && !journeyData[i-1].section){
+      const conn=document.createElement('div');conn.className='j-connector';w.appendChild(conn);
+    }
+
+    // Chapter card
+    const ch=document.createElement('div');
+    ch.className='j-ch';
+    ch.setAttribute('data-type',it.type);
+    ch.innerHTML=`
+      <div class="j-card">
+        <div class="j-stripe"></div>
+        <div class="j-inner">
+          <div class="j-num">${it.num}</div>
+          ${it.founder?'<div class="j-founder-badge">✦ Founder</div>':''}
+          <div class="j-role">${it.role}</div>
+          <div class="j-co">${it.co}</div>
+          <div class="j-meta">
+            ${it.loc?`<span>${it.loc}</span><div class="j-meta-dot"></div>`:''}
+            <span>${it.when}</span>
+          </div>
+          <div class="j-desc">${it.desc}</div>
+          <div class="j-tags">${it.tags.map(t=>`<span class="j-tag">${t}</span>`).join('')}</div>
+        </div>
+      </div>
+    `;
+    w.appendChild(ch);
+  });
+
+  // Intersection Observer for scroll reveal
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('vis');
+        observer.unobserve(e.target);
+      }
+    });
+  },{root:scroll,threshold:0.15});
+
+  w.querySelectorAll('.j-ch').forEach((ch,i)=>{
+    ch.style.transitionDelay=(i*0.06)+'s';
+    observer.observe(ch);
+  });
+
+  // Scroll progress bar
+  scroll.addEventListener('scroll',()=>{
+    const pct=scroll.scrollTop/(scroll.scrollHeight-scroll.clientHeight);
+    document.getElementById('jProgress').style.height=(pct*100)+'%';
+  });
+}
+
+// Portfolio
+let pi=false;
+function initPf(){
+  if(pi)return;pi=true;
+  const w=document.getElementById('pfW');
+  G.projects.forEach(p=>{
+    const c=document.createElement('div');c.className='pf-c';
+    if(p.link)c.onclick=()=>window.open(p.link,'_blank');
+    c.innerHTML=`
+      <div class="pf-img" style="background:${p.bg}"><span style="font-size:52px">${p.emoji}</span></div>
+      <div class="pf-inf">
+        <div class="pf-tt">${p.title}${p.link?' <span style="font-size:12px;color:var(--accent)">↗</span>':''}</div>
+        <div class="pf-sub">${p.sub}</div>
+        <div class="pf-tags">${p.tags.map(t=>`<span class="pf-tag ${t.c}">${t.l}</span>`).join('')}</div>
+      </div>
+    `;
+    w.appendChild(c);
+  });
+}
+
+function downloadCV(){alert('Resume download coming soon! Connect with Giulia on LinkedIn or via email.')}
+</script>
+</body>
+</html>
