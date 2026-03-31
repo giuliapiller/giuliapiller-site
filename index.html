@@ -329,11 +329,64 @@ body{
 .mg-btn.pri{background:var(--accent);color:#fff}
 .mg-btn.sec{background:rgba(0,122,255,.08);color:var(--accent)}
 
-/* ===== RESPONSIVE ===== */
-@media(min-width:860px){.side{display:flex}}
+/* ===== MAC WINDOW ===== */
+.mac-window{display:contents}
+.mac-titlebar,.mac-sidebar{display:none}
+.mac-body,.mac-phone-area{display:contents}
+
+@media(min-width:860px){
+  body{background:linear-gradient(135deg,#0d0d0d 0%,#111827 60%,#0d0d0d 100%)}
+  .mac-window{
+    display:flex;flex-direction:column;
+    border-radius:12px;overflow:hidden;
+    box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.08);
+    width:min(1060px,96vw);height:min(820px,92vh);
+  }
+  .mac-titlebar{
+    display:flex;align-items:center;height:44px;
+    background:#2c2c2e;border-bottom:1px solid rgba(255,255,255,.06);
+    padding:0 16px;position:relative;flex-shrink:0;
+  }
+  .mac-btns{display:flex;gap:8px}
+  .mac-btn{width:13px;height:13px;border-radius:50%;cursor:default;display:inline-block}
+  .mac-red{background:#ff5f57}.mac-yellow{background:#febc2e}.mac-green{background:#28c840}
+  .mac-wintitle{
+    position:absolute;left:50%;transform:translateX(-50%);
+    font-size:13px;font-weight:500;color:rgba(255,255,255,.45);letter-spacing:-.1px;
+  }
+  .mac-body{display:flex;flex:1;overflow:hidden}
+  .mac-sidebar{
+    display:flex;flex-direction:column;
+    width:210px;background:#1c1c1e;
+    border-right:1px solid rgba(255,255,255,.07);flex-shrink:0;
+  }
+  .mac-profile{padding:22px 16px 16px;border-bottom:1px solid rgba(255,255,255,.06);text-align:center}
+  .mac-avatar{width:62px;height:62px;border-radius:50%;object-fit:cover;
+    box-shadow:0 2px 12px rgba(0,0,0,.4);display:block;margin:0 auto 10px}
+  .mac-name{font-size:14px;font-weight:700;color:#fff;letter-spacing:-.2px}
+  .mac-role{font-size:11px;color:rgba(255,255,255,.35);margin-top:3px}
+  .mac-avail{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;
+    color:#34c759;background:rgba(52,199,89,.12);padding:3px 9px;border-radius:20px;margin-top:8px}
+  .mac-dot{width:5px;height:5px;border-radius:50%;background:#34c759;animation:glo 2s infinite;flex-shrink:0}
+  .mac-nav{padding:10px 8px;flex:1;overflow-y:auto}
+  .mac-nav-label{font-size:10px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.8px;color:rgba(255,255,255,.2);padding:10px 8px 4px}
+  .mac-nav-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;
+    cursor:pointer;font-size:13px;font-weight:500;color:rgba(255,255,255,.6);
+    transition:background .12s,color .12s}
+  .mac-nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
+  .mac-nav-item span{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+  .mac-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.06)}
+  .mac-footer-line{font-size:10px;color:rgba(255,255,255,.2);line-height:1.6}
+  .mac-phone-area{flex:1;display:flex;align-items:center;justify-content:center;
+    background:#000;overflow:hidden}
+  .mac-phone-area .phone{transform:scale(0.88);transform-origin:center;flex-shrink:0}
+  .side{display:none!important}
+}
+
+/* ===== RESPONSIVE (MOBILE) ===== */
 @media(max-width:430px){
   body{background:var(--bg)}
-  .wrap{padding:0}
   .phone{width:100%;height:100vh;height:100dvh;border-radius:0;padding:0;box-shadow:none;background:var(--bg)}
   .scr,.lock,.av{border-radius:0}
   .dock{border-radius:26px}
@@ -342,14 +395,41 @@ body{
 </style>
 </head>
 <body>
-<div class="wrap">
-
-<div class="side">
-  <h1>Giulia<br>Piller</h1>
-  <p class="s-sub">Originally from Munich. Five years across London, Berlin and NYC in startups, consulting, and VC.<br>Columbia MS · McKinsey · HV Capital · Picus.</p>
-  <p class="s-hint"><span>→</span> Tap the phone to explore</p>
+<div class="mac-window">
+<div class="mac-titlebar">
+  <div class="mac-btns">
+    <span class="mac-btn mac-red"></span>
+    <span class="mac-btn mac-yellow"></span>
+    <span class="mac-btn mac-green"></span>
+  </div>
+  <div class="mac-wintitle">Giulia Piller.app</div>
 </div>
-
+<div class="mac-body">
+<div class="mac-sidebar">
+  <div class="mac-profile">
+    <img src="photo.jpg" class="mac-avatar" alt="Giulia">
+    <div class="mac-name">Giulia Piller</div>
+    <div class="mac-role">GTM · Strategy · Ops</div>
+    <div class="mac-avail"><span class="mac-dot"></span>Open to roles</div>
+  </div>
+  <div class="mac-nav">
+    <div class="mac-nav-label">Explore</div>
+    <div class="mac-nav-item" onclick="openApp('messages')"><span>💬</span>Messages</div>
+    <div class="mac-nav-item" onclick="openApp('timeline')"><span>📅</span>Journey</div>
+    <div class="mac-nav-item" onclick="openApp('portfolio')"><span>📁</span>Portfolio</div>
+    <div class="mac-nav-item" onclick="openApp('findme')"><span>🌿</span>Find Me</div>
+    <div class="mac-nav-item" onclick="openApp('meet')"><span>🎥</span>Meet Giulia</div>
+    <div class="mac-nav-label">Connect</div>
+    <div class="mac-nav-item" onclick="window.open('https://www.linkedin.com/in/giulia-piller-2605b81a2/','_blank')"><span>💼</span>LinkedIn</div>
+    <div class="mac-nav-item" onclick="window.open('https://calendly.com/giulia-piller99/30min','_blank')"><span>📅</span>Book a Call</div>
+    <div class="mac-nav-item" onclick="downloadCV()"><span>📄</span>Resume</div>
+  </div>
+  <div class="mac-footer">
+    <div class="mac-footer-line">Columbia MS · Dec 2026</div>
+    <div class="mac-footer-line">Summer '26 · FT Jan '27</div>
+  </div>
+</div>
+<div class="mac-phone-area">
 <div class="phone">
 <div class="scr">
 
@@ -606,6 +686,8 @@ body{
   </div>
 </div>
 
+</div>
+</div>
 </div>
 </div>
 </div>
