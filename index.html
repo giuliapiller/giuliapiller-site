@@ -416,7 +416,6 @@ body{
     <div class="mac-nav-label">Explore</div>
     <div class="mac-nav-item" onclick="openApp('messages')"><span>💬</span>Messages</div>
     <div class="mac-nav-item" onclick="openApp('timeline')"><span>📅</span>Journey</div>
-    <div class="mac-nav-item" onclick="openApp('portfolio')"><span>📁</span>Portfolio</div>
     <div class="mac-nav-item" onclick="openApp('findme')"><span>🌿</span>Find Me</div>
     <div class="mac-nav-item" onclick="openApp('meet')"><span>🎥</span>Meet Giulia</div>
     <div class="mac-nav-label">Connect</div>
@@ -449,7 +448,7 @@ body{
 
 <!-- Status bar -->
 <div class="sbar">
-  <span id="sTime">9:41</span>
+  <span id="sTime"></span>
   <div class="sbar-r">
     <svg width="17" height="12" viewBox="0 0 17 12"><path d="M1 8h2v4H1zM5 5h2v7H5zM9 2h2v10H9zM13 0h2v12h-2z" fill="currentColor"/></svg>
     <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 3a7 7 0 00-5 2l1.4 1.4A5 5 0 018 5a5 5 0 013.6 1.4L13 5a7 7 0 00-5-2zm0 4c-1 0-1.8.4-2.5 1l1.4 1.4a1.5 1.5 0 012.2 0L10.5 8c-.7-.6-1.5-1-2.5-1z" fill="currentColor"/></svg>
@@ -460,8 +459,8 @@ body{
 <!-- Lock Screen -->
 <div class="lock" id="lock" onclick="unlock()">
   <div class="lock-top">
-    <div class="lock-t" id="lTime">9:41</div>
-    <div class="lock-d" id="lDate">Monday, March 23</div>
+    <div class="lock-t" id="lTime"></div>
+    <div class="lock-d" id="lDate"></div>
   </div>
   <div class="lock-ns">
     <div class="lock-n">
@@ -470,13 +469,13 @@ body{
       <div class="ni-time">now</div>
     </div>
     <div class="lock-n">
-      <div class="ni-ico" style="background:rgba(175,82,222,.2)">📁</div>
-      <div class="ni-body"><div class="ni-app">Portfolio</div><div class="ni-txt">Voice Z · atmossphere · McKinsey projects</div></div>
+      <div class="ni-ico" style="background:rgba(0,122,255,.2)">🎓</div>
+      <div class="ni-body"><div class="ni-app">Journey</div><div class="ni-txt">Columbia MS Dec '26 · LSE First Class · McKinsey</div></div>
       <div class="ni-time">2m</div>
     </div>
     <div class="lock-n">
-      <div class="ni-ico" style="background:rgba(0,122,255,.2)">🎓</div>
-      <div class="ni-body"><div class="ni-app">Journey</div><div class="ni-txt">Columbia MS '26 · LSE First Class Honours</div></div>
+      <div class="ni-ico" style="background:rgba(255,149,0,.2)">🎯</div>
+      <div class="ni-body"><div class="ni-app">Opportunities</div><div class="ni-txt">Seeking Summer '26 internship · FT Jan '27 · NYC & SF</div></div>
       <div class="ni-time">5m</div>
     </div>
   </div>
@@ -493,8 +492,8 @@ body{
       <img class="w-photo" id="heroPhoto" src="photo.jpg" alt="Giulia">
       <div class="w-info">
         <h2>Giulia Piller</h2>
-        <p>Strategy · Ventures · Business</p>
-        <div class="w-status"><div class="w-sdot"></div>Open to opportunities</div>
+        <p>GTM · Strategy · New York City</p>
+        <div class="w-status"><div class="w-sdot"></div>Seeking Summer '26 · FT Jan '27</div>
       </div>
     </div>
 
@@ -525,10 +524,6 @@ body{
       <div class="ai-img" style="background:linear-gradient(135deg,#5856d6,#af52de)">📅</div>
       <span class="ai-lbl">Journey</span>
     </div>
-    <div class="ai" onclick="openApp('portfolio')">
-      <div class="ai-img" style="background:linear-gradient(135deg,#ff6b6b,#ff9500)">📁</div>
-      <span class="ai-lbl">Portfolio</span>
-    </div>
     <div class="ai" onclick="openApp('findme')">
       <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#a8e063)">🌿</div>
       <span class="ai-lbl">Find Me</span>
@@ -558,10 +553,6 @@ body{
     <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#30d158)">💬</div>
     <span class="ai-lbl">Messages</span>
   </div>
-  <div class="ai" onclick="openApp('portfolio')">
-    <div class="ai-img" style="background:linear-gradient(135deg,#ff6b6b,#ff9500)">📁</div>
-    <span class="ai-lbl">Portfolio</span>
-  </div>
   <div class="ai" onclick="openApp('findme')">
     <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#a8e063)">🌿</div>
     <span class="ai-lbl">Find Me</span>
@@ -584,7 +575,7 @@ body{
     <div class="im-hdr">
       <img class="im-av" src="photo.jpg" alt="Giulia">
       <div class="im-nm">Giulia Piller</div>
-      <div class="im-lb">Strategy · Ventures · Business</div>
+      <div class="im-lb">New York City · GTM · Strategy</div>
     </div>
     <div class="msgs" id="msgs"><div class="msg-t">Today</div></div>
   </div>
@@ -607,14 +598,6 @@ body{
   </div>
 </div>
 
-<!-- ===== PORTFOLIO ===== -->
-<div class="av" id="v-portfolio">
-  <div class="av-nav">
-    <button class="av-back" onclick="closeApp()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
-    <div class="av-title">Portfolio</div>
-  </div>
-  <div class="av-body"><div class="pf" id="pfW"></div></div>
-</div>
 
 <!-- ===== FIND ME ===== -->
 <div class="av" id="v-findme">
@@ -628,34 +611,34 @@ body{
       <div class="fm-sub">When I'm not building the next thing...</div>
       <div class="fm-grid">
         <div class="fm-card">
-          <div class="fm-emoji">🍵</div>
-          <div class="fm-label">Matcha</div>
-          <div class="fm-desc">Oat milk, always</div>
-        </div>
-        <div class="fm-card">
-          <div class="fm-emoji">🧘‍♀️</div>
-          <div class="fm-label">Pilates</div>
-          <div class="fm-desc">Reformer preferred</div>
+          <div class="fm-emoji">🏃‍♀️</div>
+          <div class="fm-label">West Side Hwy</div>
+          <div class="fm-desc">6am, before the city wakes</div>
         </div>
         <div class="fm-card">
           <div class="fm-emoji">🔥</div>
           <div class="fm-label">Hot Yoga</div>
-          <div class="fm-desc">37°C and breathing</div>
+          <div class="fm-desc">37°C, non-negotiable</div>
+        </div>
+        <div class="fm-card">
+          <div class="fm-emoji">🎙️</div>
+          <div class="fm-label">Faces Podcast</div>
+          <div class="fm-desc">Interviewing the builders</div>
+        </div>
+        <div class="fm-card">
+          <div class="fm-emoji">📰</div>
+          <div class="fm-label">Foxy Facts</div>
+          <div class="fm-desc">Started a newspaper at 16</div>
         </div>
         <div class="fm-card">
           <div class="fm-emoji">✈️</div>
-          <div class="fm-label">Traveling</div>
-          <div class="fm-desc">6+ countries lived in</div>
+          <div class="fm-label">Always in transit</div>
+          <div class="fm-desc">Next trip: already booked</div>
         </div>
         <div class="fm-card">
-          <div class="fm-emoji">⚽</div>
-          <div class="fm-label">Sport</div>
-          <div class="fm-desc">Tennis, skiing, running</div>
-        </div>
-        <div class="fm-card">
-          <div class="fm-emoji">📚</div>
+          <div class="fm-emoji">📖</div>
           <div class="fm-label">Reading</div>
-          <div class="fm-desc">Strategy & biographies</div>
+          <div class="fm-desc">VC memos over Netflix</div>
         </div>
       </div>
     </div>
@@ -733,14 +716,7 @@ const G = {
       { role: "Growth Marketing Bootcamp", co: "Le Wagon", when: "Apr – Jun 2025", loc: "", desc: "Intensive growth marketing program covering acquisition, analytics, and automation.", tags: ["Growth","Marketing","Analytics"], type: "edu" }
     ]}
   ],
-  projects: [
-    { title: "Voice Z", sub: "Co-founded Gen Z consultancy & marketing agency. Advised corporates on authentic next-gen engagement.", emoji: "🗣️", bg: "linear-gradient(135deg,#667eea,#764ba2)", tags: [{l:"Founder",c:"pu"},{l:"Strategy",c:"bl"},{l:"Marketing",c:"pk"}] },
-    { title: "atmossphere", sub: "Award-winning startup — moss installations absorbing air pollution. Featured in German press.", emoji: "🌿", bg: "linear-gradient(135deg,#34c759,#a8e063)", tags: [{l:"Founder",c:"gn"},{l:"Sustainability",c:"bl"},{l:"Award-Winning",c:"or"}] },
-    { title: "GI Researcher Tracker", sub: "AI research intelligence system tracking cultural relevance in the research community. Python + Slack integration + automated weekly briefings.", emoji: "🤖", bg: "linear-gradient(135deg,#24292e,#586069)", tags: [{l:"Python",c:"bl"},{l:"AI",c:"pu"},{l:"Automation",c:"gn"}], link: "https://github.com/giuliapiller/gi-researcher-tracker" },
-    { title: "ToyStore", sub: "E-commerce storefront built with Jekyll during Le Wagon bootcamp. Full product catalog and checkout flow.", emoji: "🧸", bg: "linear-gradient(135deg,#f093fb,#f5576c)", tags: [{l:"HTML/JS",c:"or"},{l:"E-commerce",c:"pk"},{l:"Le Wagon",c:"bl"}], link: "https://github.com/giuliapiller/ToyStore" },
-    { title: "Picus Capital Scouting", sub: "Sourcing early-stage tech opportunities across 20+ countries for a $1B+ AUM fund.", emoji: "🔭", bg: "linear-gradient(135deg,#4facfe,#00f2fe)", tags: [{l:"VC",c:"bl"},{l:"Deal Flow",c:"pu"},{l:"Tech",c:"gn"}] },
-    { title: "Columbia Impact Investing", sub: "Graduate Consultant at Ci3 — Columbia's impact investing initiative.", emoji: "💡", bg: "linear-gradient(135deg,#ff9500,#ffcc02)", tags: [{l:"Impact",c:"or"},{l:"Consulting",c:"bl"},{l:"Finance",c:"gn"}] }
-  ]
+  projects: []
 };
 
 // Time
@@ -774,7 +750,6 @@ function openApp(id){
   requestAnimationFrame(()=>{v.classList.add('open');cur=id;
     if(id==='messages')initMsgs();
     if(id==='timeline')initTl();
-    if(id==='portfolio')initPf();
   });
 }
 function closeApp(){
@@ -947,25 +922,6 @@ function initTl(){
   });
 }
 
-// Portfolio
-let pi=false;
-function initPf(){
-  if(pi)return;pi=true;
-  const w=document.getElementById('pfW');
-  G.projects.forEach(p=>{
-    const c=document.createElement('div');c.className='pf-c';
-    if(p.link)c.onclick=()=>window.open(p.link,'_blank');
-    c.innerHTML=`
-      <div class="pf-img" style="background:${p.bg}"><span style="font-size:52px">${p.emoji}</span></div>
-      <div class="pf-inf">
-        <div class="pf-tt">${p.title}${p.link?' <span style="font-size:12px;color:var(--accent)">↗</span>':''}</div>
-        <div class="pf-sub">${p.sub}</div>
-        <div class="pf-tags">${p.tags.map(t=>`<span class="pf-tag ${t.c}">${t.l}</span>`).join('')}</div>
-      </div>
-    `;
-    w.appendChild(c);
-  });
-}
 
 function downloadCV(){const a=document.createElement('a');a.href='resume.pdf';a.download='Resume-Giulia-Piller.pdf';a.click()}
 </script>
