@@ -11,11 +11,12 @@
 <meta name="description" content="Giulia Piller — Strategy, Ventures & Business Building. Interactive portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#f2f2f7;--card:#fff;--text:#1c1c1e;--text2:#3a3a3c;--text3:#8e8e93;
-  --accent:#007aff;--green:#34c759;--red:#ff3b30;--orange:#ff9500;
-  --purple:#af52de;--pink:#ff2d55;--indigo:#5856d6;
+  --accent:#0d9488;--green:#34c759;--red:#ff3b30;--orange:#ff9500;
+  --purple:#af52de;--pink:#ff2d55;--indigo:#5856d6;--teal-light:#ccfbf1;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
@@ -29,8 +30,10 @@ body{
 
 /* Side panel desktop */
 .side{display:none;flex-direction:column;max-width:420px;flex-shrink:0}
-.side h1{font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.1;margin-bottom:12px}
-.side .s-sub{font-size:20px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:32px}
+.side h1{font-family:'Instrument Serif',Georgia,serif;font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.1;margin-bottom:12px}
+.side .s-sub{font-size:20px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:24px}
+.side .s-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.s-tag{padding:6px 14px;border-radius:20px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);font-size:13px;font-weight:500}
 .side .s-hint{font-size:14px;color:rgba(255,255,255,.25);display:flex;align-items:center;gap:8px}
 .side .s-hint span{display:inline-block;animation:arr 1.5s ease-in-out infinite}
 @keyframes arr{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
@@ -204,7 +207,7 @@ body{
 .j-section{padding:28px 20px 16px;position:relative}
 .j-section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
   color:var(--accent);margin-bottom:4px}
-.j-section-title{font-size:28px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1.1}
+.j-section-title{font-family:'Instrument Serif',Georgia,serif;font-size:28px;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1.1}
 .j-section.edu .j-section-label{color:var(--purple)}
 
 /* Chapter cards */
@@ -234,9 +237,9 @@ body{
 .j-tag{padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.2px}
 
 /* Color themes per type */
-.j-ch[data-type="vc"] .j-stripe{background:linear-gradient(90deg,#007aff,#5ac8fa)}
-.j-ch[data-type="vc"] .j-co{color:#007aff}
-.j-ch[data-type="vc"] .j-tag{background:rgba(0,122,255,.07);color:#007aff}
+.j-ch[data-type="vc"] .j-stripe{background:linear-gradient(90deg,#0d9488,#14b8a6)}
+.j-ch[data-type="vc"] .j-co{color:#0d9488}
+.j-ch[data-type="vc"] .j-tag{background:rgba(13,148,136,.07);color:#0d9488}
 
 .j-ch[data-type="consulting"] .j-stripe{background:linear-gradient(90deg,#1a73e8,#4285f4)}
 .j-ch[data-type="consulting"] .j-co{color:#1a73e8}
@@ -301,7 +304,7 @@ body{
 
 /* ===== FIND ME ===== */
 .fm{padding:20px 16px}
-.fm-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px}
+.fm-title{font-family:'Instrument Serif',Georgia,serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px}
 .fm-sub{font-size:14px;color:var(--text3);margin-bottom:20px}
 .fm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fm-card{background:#fff;border-radius:20px;padding:20px 16px;text-align:center;transition:transform .2s}
@@ -310,16 +313,27 @@ body{
 .fm-label{font-size:15px;font-weight:600;color:var(--text)}
 .fm-desc{font-size:12px;color:var(--text3);margin-top:3px}
 
+/* ===== NOW SECTION ===== */
+.now{padding:20px 16px}
+.now-title{font-family:'Instrument Serif',Georgia,serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px}
+.now-sub{font-size:14px;color:var(--text3);margin-bottom:6px}
+.now-updated{font-size:12px;color:var(--text3);margin-bottom:20px;opacity:.7}
+.now-grid{display:flex;flex-direction:column;gap:12px}
+.now-card{background:#fff;border-radius:20px;padding:20px;border-left:4px solid #2dd4bf;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.now-card-icon{font-size:24px;margin-bottom:8px}
+.now-card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.now-card-desc{font-size:13px;color:var(--text3);line-height:1.5}
+
 /* ===== MEET GIULIA ===== */
 .mg{padding:20px 16px;display:flex;flex-direction:column;align-items:center;text-align:center}
 .mg-circle{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#e0e7ff,#f0e6ff);
   display:flex;align-items:center;justify-content:center;position:relative;margin:20px 0 24px;overflow:hidden}
 .mg-photo{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.mg-ring{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(0,122,255,.15);
+.mg-ring{position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(13,148,136,.15);
   animation:rp 2.5s ease-in-out infinite}
 .mg-ring:nth-child(2){inset:-18px;animation-delay:.7s}
 @keyframes rp{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.04);opacity:0}}
-.mg-t{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-.5px}
+.mg-t{font-family:'Instrument Serif',Georgia,serif;font-size:24px;font-weight:700;color:var(--text);letter-spacing:-.5px}
 .mg-s{font-size:15px;color:var(--text3);line-height:1.5;max-width:280px;margin:8px 0 28px}
 .mg-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:280px}
 .mg-btn{padding:15px 20px;border-radius:14px;border:none;font-size:16px;font-weight:600;
@@ -327,172 +341,29 @@ body{
   transition:transform .15s}
 .mg-btn:active{transform:scale(.97)}
 .mg-btn.pri{background:var(--accent);color:#fff}
-.mg-btn.sec{background:rgba(0,122,255,.08);color:var(--accent)}
+.mg-btn.sec{background:rgba(13,148,136,.08);color:var(--accent)}
 
-/* ===== OS SHELL ===== */
-.os-menubar{display:none}
-.os-desktop{width:100%;min-height:100dvh;display:block;background:#000}
-.os-window{width:100%;min-height:100dvh;overflow:hidden;position:relative;background:var(--bg)}
-.os-titlebar,.os-sidebar{display:none}
-.os-winbody{display:block;min-height:100dvh}
-.os-main{width:100%;height:100dvh;position:relative;overflow:hidden;background:var(--bg)}
+/* ===== DESKTOP ===== */
 
-/* ===== DESKTOP macOS ===== */
-@media(min-width:768px){
-  body{
-    background:linear-gradient(135deg,#0a0a0f 0%,#0f172a 50%,#0a0a0f 100%);
-    display:block;overflow:hidden;height:100vh;min-height:unset;
-  }
-  .os-menubar{
-    display:flex;align-items:center;justify-content:space-between;
-    position:fixed;top:0;left:0;right:0;height:28px;z-index:2000;
-    background:rgba(12,12,18,.92);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
-    border-bottom:1px solid rgba(255,255,255,.07);
-    padding:0 16px;font-size:13px;color:rgba(255,255,255,.9);font-weight:500;
-  }
-  .os-menu-l{display:flex;align-items:center;gap:18px}
-  .os-apple{font-size:15px;cursor:default;opacity:.9}
-  .os-appname{font-weight:700;letter-spacing:-.2px}
-  .os-mi{opacity:.6;cursor:default}
-  .os-menu-r{display:flex;align-items:center;gap:10px;font-size:12px;opacity:.7}
-  .os-desktop{
-    position:fixed;top:28px;left:0;right:0;bottom:0;
-    min-height:unset;height:auto;
-    display:flex;align-items:center;justify-content:center;padding:20px;
-  }
-  .os-window{
-    width:100%;max-width:1100px;
-    height:100%;max-height:760px;min-height:unset;
-    border-radius:12px;overflow:hidden;
-    box-shadow:0 40px 120px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.09);
-    display:flex;flex-direction:column;background:#1a1a1c;
-  }
-  .os-titlebar{
-    display:flex;align-items:center;height:44px;flex-shrink:0;
-    background:#272729;border-bottom:1px solid rgba(255,255,255,.07);
-    padding:0 18px;position:relative;
-  }
-  .os-btns{display:flex;gap:8px}
-  .os-btn{width:13px;height:13px;border-radius:50%;cursor:default;display:inline-block;flex-shrink:0}
-  .os-btn.red{background:#ff5f57}.os-btn.yellow{background:#febc2e}.os-btn.green{background:#28c840}
-  .os-wintitle{
-    position:absolute;left:50%;transform:translateX(-50%);
-    font-size:13px;font-weight:500;color:rgba(255,255,255,.45);
-  }
-  .os-winbody{display:flex;flex:1;overflow:hidden;min-height:unset;height:auto}
-  .os-sidebar{
-    display:flex;flex-direction:column;
-    width:220px;background:#1c1c1e;
-    border-right:1px solid rgba(255,255,255,.07);flex-shrink:0;overflow-y:auto;
-  }
-  .os-profile{padding:24px 16px 16px;border-bottom:1px solid rgba(255,255,255,.06);text-align:center}
-  .os-avatar{width:66px;height:66px;border-radius:50%;object-fit:cover;
-    display:block;margin:0 auto 12px;box-shadow:0 4px 16px rgba(0,0,0,.5)}
-  .os-pname{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.3px}
-  .os-prole{font-size:11px;color:rgba(255,255,255,.38);margin-top:3px}
-  .os-pavail{
-    display:inline-flex;align-items:center;gap:5px;
-    font-size:10px;font-weight:600;color:#34c759;
-    background:rgba(52,199,89,.12);padding:3px 10px;border-radius:20px;margin-top:8px;
-  }
-  .os-pdot{width:5px;height:5px;border-radius:50%;background:#34c759;animation:glo 2s infinite;flex-shrink:0}
-  .os-nav{padding:10px 8px;flex:1}
-  .os-nav-label{
-    font-size:10px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.8px;color:rgba(255,255,255,.2);padding:10px 8px 4px;
-  }
-  .os-nav-item{
-    display:flex;align-items:center;gap:10px;
-    padding:8px 10px;border-radius:8px;cursor:pointer;
-    font-size:13px;font-weight:500;color:rgba(255,255,255,.65);
-    transition:background .12s,color .12s;user-select:none;
-  }
-  .os-nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
-  .os-nav-item.os-active{background:rgba(0,122,255,.18);color:#4da3ff}
-  .os-nav-item span{font-size:16px;width:22px;text-align:center;flex-shrink:0}
-  .os-sfooter{padding:14px 16px;border-top:1px solid rgba(255,255,255,.06)}
-  .os-sfooter-line{font-size:10px;color:rgba(255,255,255,.22);line-height:1.7}
-  .os-main{flex:1;overflow:hidden;position:relative;background:#1a1a1c;height:auto;min-height:unset}
-  /* Hide phone-only chrome */
-  .island,.notif-banner,.sbar,.lock,.wall,.home,#dock,.hbar{display:none!important}
-  /* Views: fill content area, fade in/out */
-  .av{
-    border-radius:0!important;transform:none!important;
-    opacity:0;pointer-events:none;
-    transition:opacity .18s ease;background:#1a1a1c;
-  }
-  .av.open{opacity:1;pointer-events:all}
-  .av-nav{display:none!important}
-  .av-body{height:100%!important;background:#1a1a1c}
-  /* Messages - lighten bg for readability */
-  #v-messages,.av-body{background:#f2f2f7}
-  #v-messages .av-body{background:#f2f2f7}
-  #v-timeline .av-body,#v-findme .av-body,#v-meet .av-body{background:#f2f2f7}
-}
-
-/* ===== MOBILE ===== */
-@media(max-width:767px){
-  body{overflow:hidden;height:100dvh;min-height:100dvh;display:block}
-  .os-desktop,.os-window,.os-winbody,.os-main{
-    display:block;width:100%;height:100dvh;overflow:hidden;position:relative;background:var(--bg);
-  }
-  .lock,.av{border-radius:0}
+@media(min-width:860px){.side{display:flex}}
+@media(max-width:430px){
+  body{background:var(--bg)}
+  .phone{width:100%;height:100vh;height:100dvh;border-radius:0;padding:0;box-shadow:none;background:var(--bg)}
+  .scr,.lock,.av{border-radius:0}
   .dock{border-radius:26px}
   .hbar{display:none}
 }
 </style>
 </head>
 <body>
-<!-- macOS Menu Bar -->
-<div class="os-menubar">
-  <div class="os-menu-l">
-    <span class="os-apple">&#63743;</span>
-    <span class="os-appname">Giulia Piller</span>
-    <span class="os-mi">File</span>
-    <span class="os-mi">View</span>
-    <span class="os-mi">Help</span>
-  </div>
-  <div class="os-menu-r">
-    <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2A6 6 0 0 0 2.2 4.8L1 3.4A7.8 7.8 0 0 1 7.5 0a7.8 7.8 0 0 1 6.5 3.4L12.8 4.8A6 6 0 0 0 7.5 2zm0 3A3 3 0 0 0 5 6.6L3.8 5.2A4.8 4.8 0 0 1 7.5 4a4.8 4.8 0 0 1 3.7 1.2L10 6.6A3 3 0 0 0 7.5 5zm0 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
-    <span id="osTime"></span>
-  </div>
+<div class="wrap">
+<div class="side">
+  <h1>Giulia<br>Piller</h1>
+  <p class="s-sub">Originally from Munich. Based in New York. Five years across London, Berlin and NYC in consulting, VC, and early-stage ventures.<br>Columbia MS · McKinsey · Picus Capital.</p>
+  <p class="s-hint"><span>→</span> Tap the phone to explore</p>
 </div>
-<!-- Desktop + Mobile Container -->
-<div class="os-desktop">
-<div class="os-window">
-<div class="os-titlebar">
-  <div class="os-btns">
-    <span class="os-btn red"></span>
-    <span class="os-btn yellow"></span>
-    <span class="os-btn green"></span>
-  </div>
-  <div class="os-wintitle">Giulia Piller</div>
-</div>
-<div class="os-winbody">
-<div class="os-sidebar">
-  <div class="os-profile">
-    <img src="photo.jpg" class="os-avatar" alt="Giulia">
-    <div class="os-pname">Giulia Piller</div>
-    <div class="os-prole">GTM · Strategy · Ops</div>
-    <div class="os-pavail"><span class="os-pdot"></span>Open to roles</div>
-  </div>
-  <div class="os-nav">
-    <div class="os-nav-label">Explore</div>
-    <div class="os-nav-item os-active" data-app="messages" onclick="openApp('messages')"><span>💬</span>Messages</div>
-    <div class="os-nav-item" data-app="timeline" onclick="openApp('timeline')"><span>📅</span>Journey</div>
-    <div class="os-nav-item" data-app="findme" onclick="openApp('findme')"><span>🌿</span>Find Me</div>
-    <div class="os-nav-item" data-app="meet" onclick="openApp('meet')"><span>🎥</span>Meet Giulia</div>
-    <div class="os-nav-label">Connect</div>
-    <div class="os-nav-item" onclick="window.open('https://www.linkedin.com/in/giulia-piller-2605b81a2/','_blank')"><span>💼</span>LinkedIn</div>
-    <div class="os-nav-item" onclick="window.open('https://calendly.com/giulia-piller99/30min','_blank')"><span>📅</span>Book a Call</div>
-    <div class="os-nav-item" onclick="downloadCV()"><span>📄</span>Resume</div>
-  </div>
-  <div class="os-sfooter">
-    <div class="os-sfooter-line">Columbia MS · Dec 2026</div>
-    <div class="os-sfooter-line">Seeking Summer '26 · FT Jan '27</div>
-  </div>
-</div>
-<div class="os-main">
+<div class="phone">
+<div class="scr">
 
 <!-- Dynamic Island -->
 <div class="island"></div>
@@ -531,9 +402,9 @@ body{
       <div class="ni-time">now</div>
     </div>
     <div class="lock-n">
-      <div class="ni-ico" style="background:rgba(0,122,255,.2)">🎓</div>
-      <div class="ni-body"><div class="ni-app">Journey</div><div class="ni-txt">Columbia MS Dec '26 · LSE First Class · McKinsey</div></div>
-      <div class="ni-time">2m</div>
+      <div class="ni-ico" style="background:rgba(13,148,136,.2)">⚡</div>
+      <div class="ni-body"><div class="ni-app">Now</div><div class="ni-txt">Right Now · What I'm working on — updated March 2026</div></div>
+      <div class="ni-time">now</div>
     </div>
     <div class="lock-n">
       <div class="ni-ico" style="background:rgba(255,149,0,.2)">🎯</div>
@@ -586,6 +457,10 @@ body{
       <div class="ai-img" style="background:linear-gradient(135deg,#5856d6,#af52de)">📅</div>
       <span class="ai-lbl">Journey</span>
     </div>
+    <div class="ai" onclick="openApp('now')">
+      <div class="ai-img" style="background:linear-gradient(135deg,#2dd4bf,#06b6d4)">⚡</div>
+      <span class="ai-lbl">Now</span>
+    </div>
     <div class="ai" onclick="openApp('findme')">
       <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#a8e063)">🌿</div>
       <span class="ai-lbl">Find Me</span>
@@ -615,9 +490,9 @@ body{
     <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#30d158)">💬</div>
     <span class="ai-lbl">Messages</span>
   </div>
-  <div class="ai" onclick="openApp('findme')">
-    <div class="ai-img" style="background:linear-gradient(135deg,#34c759,#a8e063)">🌿</div>
-    <span class="ai-lbl">Find Me</span>
+  <div class="ai" onclick="openApp('now')">
+    <div class="ai-img" style="background:linear-gradient(135deg,#2dd4bf,#06b6d4)">⚡</div>
+    <span class="ai-lbl">Now</span>
   </div>
   <div class="ai" onclick="openApp('meet')">
     <div class="ai-img" style="background:linear-gradient(135deg,#667eea,#764ba2)">🎥</div>
@@ -660,6 +535,52 @@ body{
   </div>
 </div>
 
+<!-- ===== NOW ===== -->
+<div class="av" id="v-now">
+  <div class="av-nav">
+    <button class="av-back" onclick="closeApp()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+    <div class="av-title">Right Now</div>
+  </div>
+  <div class="av-body">
+    <div class="now">
+      <div class="now-title">Right Now</div>
+      <div class="now-sub">What I'm working on</div>
+      <div class="now-updated">— updated March 2026</div>
+      <div class="now-grid">
+        <div class="now-card">
+          <div class="now-card-icon">🔍</div>
+          <div class="now-card-title">AI Search Visibility</div>
+          <div class="now-card-desc">Exploring how brands show up in ChatGPT, Perplexity & AI Overviews. The shift from SEO to AEO is the most interesting GTM problem right now.</div>
+        </div>
+        <div class="now-card">
+          <div class="now-card-icon">🎓</div>
+          <div class="now-card-title">Columbia MS · Final Semester</div>
+          <div class="now-card-desc">Wrapping up coursework in AI/ML, databases, and full-stack. Building things, not just studying them.</div>
+        </div>
+        <div class="now-card">
+          <div class="now-card-icon">💡</div>
+          <div class="now-card-title">Ci3 · Impact Investing</div>
+          <div class="now-card-desc">Supporting Better Ventures on deepening investment theses and catalyzing angel deal flow across key verticals.</div>
+        </div>
+        <div class="now-card">
+          <div class="now-card-icon">🎙️</div>
+          <div class="now-card-title">Faces Podcast</div>
+          <div class="now-card-desc">Still interviewing founders and builders. 20+ episodes in. Latest: conversations on AI agents and what 'building in public' actually means.</div>
+        </div>
+        <div class="now-card">
+          <div class="now-card-icon">📚</div>
+          <div class="now-card-title">Reading List</div>
+          <div class="now-card-desc">Currently into: 'The Hard Thing About Hard Things' (re-read), a16z's AI playbooks, and way too many Lenny's Newsletter issues.</div>
+        </div>
+        <div class="now-card">
+          <div class="now-card-icon">✍️</div>
+          <div class="now-card-title">This Website</div>
+          <div class="now-card-desc">Yes, I built this from scratch. Pure HTML/CSS/JS, no frameworks. Iterating on it is my favorite side project.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ===== FIND ME ===== -->
 <div class="av" id="v-findme">
@@ -731,10 +652,9 @@ body{
   </div>
 </div>
 
-</div>
-</div>
-</div>
-</div>
+</div><!-- /scr -->
+</div><!-- /phone -->
+</div><!-- /wrap -->
 
 <script>
 const G = {
@@ -805,36 +725,22 @@ setTimeout(()=>{
 
 // Nav
 let cur=null;
-const desk=()=>window.innerWidth>=768;
 
 function openApp(id){
-  if(desk()){
-    document.querySelectorAll('.av').forEach(v=>v.classList.remove('open'));
-    const v=document.getElementById('v-'+id);if(!v)return;
-    v.classList.add('open');
-    document.querySelectorAll('.os-nav-item').forEach(el=>el.classList.remove('os-active'));
-    const ni=document.querySelector('.os-nav-item[data-app="'+id+'"]');if(ni)ni.classList.add('os-active');
+  if(cur)closeApp();
+  const v=document.getElementById('v-'+id);if(!v)return;
+  document.getElementById('home').classList.add('hid');
+  document.getElementById('dock').classList.add('hid');
+  requestAnimationFrame(()=>{v.classList.add('open');cur=id;
     if(id==='messages')initMsgs();
     if(id==='timeline')initTl();
-  } else {
-    if(cur)closeApp();
-    const v=document.getElementById('v-'+id);if(!v)return;
-    document.getElementById('home').classList.add('hid');
-    document.getElementById('dock').classList.add('hid');
-    requestAnimationFrame(()=>{v.classList.add('open');cur=id;
-      if(id==='messages')initMsgs();
-      if(id==='timeline')initTl();
-    });
-  }
+  });
 }
 function closeApp(){
-  if(desk())return;
   if(!cur)return;
   document.getElementById('v-'+cur).classList.remove('open');cur=null;
   setTimeout(()=>{document.getElementById('home').classList.remove('hid');document.getElementById('dock').classList.remove('hid')},150);
 }
-// Auto-open Messages on desktop
-if(desk())openApp('messages');
 
 // Messages
 let mi=false;
